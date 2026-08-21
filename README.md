@@ -59,6 +59,7 @@ An interactive, full-stack AI representative representing **Mahil Sonowal** (Fro
 | **Phase 9** | **Backend Deployment & Production Hardening (Render)** | ✅ **Completed** |
 | **Phase 10** | **Frontend Deployment (Vercel) & Environment Config** | ✅ **Completed** |
 | **Phase 11** | **GitHub Repository, README & Comprehensive Documentation** | ✅ **Completed** |
+| **Phase 12** | **Final Polish (Themes, Skeleton, Accessibility & Favicon)** | ✅ **Completed** |
 
 ---
 
@@ -83,12 +84,13 @@ Portfolio/
 │   │   ├── assets/
 │   │   │   └── dp3.png          # Mahil's profile photo
 │   │   ├── components/
-│   │   │   ├── ChatInput.jsx    # Auto-resizing textarea & shortcuts
+│   │   │   ├── ChatInput.jsx    # Auto-resizing textarea, shortcuts & tech credit
 │   │   │   ├── ChatWindow.jsx   # Message feed & starter prompt suggestions
-│   │   │   ├── Header.jsx       # Persona header, tab switch & social links
+│   │   │   ├── Header.jsx       # Persona header, theme toggle & tab switch
 │   │   │   ├── JobMatcher.jsx   # Recruiter JD fit evaluator dashboard
-│   │   │   └── MessageBubble.jsx# Markdown rendering, avatars & copy actions
-│   │   ├── App.jsx              # Main stateful chat & tab orchestrator
+│   │   │   ├── LoadingSkeleton.jsx # App warm-up loading skeleton
+│   │   │   └── MessageBubble.jsx# Markdown rendering, cursor & copy actions
+│   │   ├── App.jsx              # Main stateful chat & theme orchestrator
 │   │   ├── index.css            # Tailwind CSS 4 & typography
 │   │   └── main.jsx             # React DOM entrypoint
 │   ├── .env.example             # Frontend local environment template
