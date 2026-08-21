@@ -77,7 +77,7 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
             Press <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono text-[10px]">Enter ↵</kbd> to send, <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono text-[10px]">Shift + Enter</kbd> for newline
           </span>
           <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-400/80">
-            <Cpu className="w-3 h-3 text-indigo-400" /> Powered by <strong className="text-slate-300">Groq</strong> + <strong className="text-slate-300">FastAPI</strong> + <strong className="text-slate-300">React</strong>
+            <Cpu className="w-3 h-3 text-indigo-400" /> Powered by <strong className="text-slate-300">Groq</strong>
           </span>
         </div>
       </div>

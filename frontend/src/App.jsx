@@ -27,11 +27,6 @@ export default function App() {
   const [isStreaming, setIsStreaming] = useState(false)
   const [isInitializing, setIsInitializing] = useState(true)
 
-  // Ensure dark mode is active
-  useEffect(() => {
-    document.documentElement.classList.add('dark')
-    document.documentElement.classList.remove('light')
-  }, [])
 
   // Persist master history to localStorage
   useEffect(() => {
