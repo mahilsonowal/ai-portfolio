@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm'
 import { User, Copy, Check, ExternalLink } from 'lucide-react'
 import profilePic from '../assets/dp3.png'
 
-export default function MessageBubble({ message }) {
+export default function MessageBubble({ message, isCurrentlyStreaming = false }) {
   const isUser = message.role === 'user'
   const [copied, setCopied] = useState(false)
 
@@ -21,22 +21,28 @@ export default function MessageBubble({ message }) {
 
   return (
     <div
-      className={`group flex items-start gap-3 w-full max-w-3xl mx-auto py-2.5 transition-opacity ${
+      className={`group flex items-start gap-2.5 sm:gap-3 w-full max-w-3xl mx-auto py-2 transition-opacity ${
         isUser ? 'flex-row-reverse justify-start' : 'justify-start'
       }`}
     >
       {/* Avatar */}
       <div className="flex-shrink-0 mt-0.5">
         {isUser ? (
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow-sm ring-2 ring-indigo-500/20">
-            <User className="w-4 h-4" />
+          <div
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-indigo-700 flex items-center justify-center text-white shadow-sm ring-2 ring-indigo-500/20"
+            aria-label="User Avatar"
+          >
+            <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </div>
         ) : (
-          <div className="w-8 h-8 rounded-xl bg-slate-900 border border-slate-700/60 p-[1.5px] overflow-hidden flex-shrink-0 shadow-sm ring-2 ring-indigo-500/20">
+          <div
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-slate-900 border border-slate-700/60 p-[1.5px] overflow-hidden flex-shrink-0 shadow-sm ring-2 ring-indigo-500/20"
+            aria-label="Mahil AI Avatar"
+          >
             <img
               src={profilePic}
               alt="Mahil Sonowal"
-              className="w-full h-full object-cover object-top rounded-[9px]"
+              className="w-full h-full object-cover object-top rounded-[7px] sm:rounded-[9px]"
             />
           </div>
         )}
@@ -44,7 +50,7 @@ export default function MessageBubble({ message }) {
 
       {/* Bubble Content */}
       <div
-        className={`relative max-w-[88%] sm:max-w-[80%] rounded-2xl px-4 py-3 text-sm sm:text-[15px] leading-relaxed transition-all shadow-sm ${
+        className={`relative max-w-[88%] sm:max-w-[82%] rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 text-sm leading-relaxed transition-all shadow-sm ${
           isUser
             ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-tr-xs shadow-indigo-500/10'
             : 'bg-slate-900/90 border border-slate-800 text-slate-200 rounded-tl-xs shadow-slate-950/40 backdrop-blur-sm'
@@ -92,17 +98,17 @@ export default function MessageBubble({ message }) {
                 ),
                 li: ({ children }) => <li className="leading-relaxed">{children}</li>,
                 h1: ({ children }) => (
-                  <h1 className="text-lg font-bold text-slate-100 mt-3 mb-2">
+                  <h1 className="text-base sm:text-lg font-bold text-slate-100 mt-3 mb-2">
                     {children}
                   </h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-base font-bold text-slate-100 mt-3 mb-1.5">
+                  <h2 className="text-sm sm:text-base font-bold text-slate-100 mt-3 mb-1.5">
                     {children}
                   </h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-sm font-semibold text-slate-200 mt-2 mb-1">
+                  <h3 className="text-xs sm:text-sm font-semibold text-slate-200 mt-2 mb-1">
                     {children}
                   </h3>
                 ),
@@ -147,21 +153,27 @@ export default function MessageBubble({ message }) {
             >
               {message.content}
             </ReactMarkdown>
+
+            {/* Glowing streaming cursor */}
+            {isCurrentlyStreaming && (
+              <span className="inline-block w-1.5 h-4 ml-1 bg-indigo-400 animate-pulse align-middle" />
+            )}
           </div>
         )}
 
-        {/* Copy Button for Assistant */}
+        {/* Copy Button with Confirmation Tooltip */}
         {!isUser && message.content && (
           <div className="flex justify-end pt-1.5 mt-1 border-t border-slate-800/60">
             <button
               onClick={handleCopy}
-              className="opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-slate-400 hover:text-indigo-400 cursor-pointer"
-              title="Copy message"
+              className="opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity flex items-center gap-1 text-[11px] text-slate-400 hover:text-indigo-400 cursor-pointer focus:outline-none"
+              title="Copy message response"
+              aria-label="Copy message response to clipboard"
             >
               {copied ? (
                 <>
                   <Check className="w-3 h-3 text-emerald-400" />
-                  <span className="text-emerald-400">Copied</span>
+                  <span className="text-emerald-400 font-medium">Copied!</span>
                 </>
               ) : (
                 <>

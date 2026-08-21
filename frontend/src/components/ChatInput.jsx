@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Send, Sparkles, Loader2 } from 'lucide-react'
+import { Send, Sparkles, Loader2, Cpu } from 'lucide-react'
 
 export default function ChatInput({ onSendMessage, isStreaming }) {
   const [input, setInput] = useState('')
@@ -32,7 +32,7 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
   }
 
   return (
-    <div className="sticky bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent pt-4 pb-4 sm:pb-6 px-4 sm:px-8">
+    <div className="sticky bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent pt-3 pb-3 sm:pb-5 px-3 sm:px-8">
       <div className="max-w-3xl mx-auto">
         <form
           onSubmit={handleSubmit}
@@ -46,6 +46,7 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
             onKeyDown={handleKeyDown}
             disabled={isStreaming}
             rows={1}
+            aria-label="Message input for AI assistant"
             placeholder={
               isStreaming
                 ? 'AI is responding...'
@@ -58,7 +59,8 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
           <button
             type="submit"
             disabled={!input.trim() || isStreaming}
-            className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 text-white disabled:text-slate-500 transition-all shadow-md shadow-indigo-600/20 disabled:shadow-none cursor-pointer disabled:cursor-not-allowed"
+            aria-label="Send message"
+            className="flex-shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 text-white disabled:text-slate-500 transition-all shadow-md shadow-indigo-600/20 disabled:shadow-none cursor-pointer disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
             title="Send Message"
           >
             {isStreaming ? (
@@ -69,11 +71,13 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
           </button>
         </form>
 
-        {/* Footer info tip */}
-        <div className="flex items-center justify-between text-[11px] text-slate-500 mt-2 px-2">
-          <span>Press <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono">Enter ↵</kbd> to send, <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono">Shift + Enter</kbd> for newline</span>
-          <span className="hidden sm:inline-flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-indigo-400" /> Grounded in verified portfolio profile
+        {/* Footer info & subtle tech attribution */}
+        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 mt-2 px-2 gap-1">
+          <span className="hidden sm:inline">
+            Press <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono text-[10px]">Enter ↵</kbd> to send, <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono text-[10px]">Shift + Enter</kbd> for newline
+          </span>
+          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-400/80">
+            <Cpu className="w-3 h-3 text-indigo-400" /> Powered by <strong className="text-slate-300">Groq</strong> + <strong className="text-slate-300">FastAPI</strong> + <strong className="text-slate-300">React</strong>
           </span>
         </div>
       </div>
