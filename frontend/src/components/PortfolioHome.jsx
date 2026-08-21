@@ -22,8 +22,8 @@ import {
   Check,
   Phone,
 } from 'lucide-react'
-import profilePic from '../assets/dp3.png'
 import JobMatcher from './JobMatcher'
+import RoamingCharacter from './RoamingCharacter'
 
 const GithubIcon = ({ className = 'w-4 h-4' }) => (
   <svg
@@ -115,8 +115,8 @@ export default function PortfolioHome({ onNavigateTab, onAskInChat, onTriggerPit
     <div className="flex-1 w-full overflow-y-auto bg-[#ffffff] text-[#312f27] font-sans antialiased selection:bg-[#ffc500] selection:text-[#312f27]">
 
       {/* 1. SLATE GRAY HERO CANVAS (#788086) */}
-      <section className="bg-[#788086] text-white pt-16 sm:pt-24 pb-20 px-4 sm:px-8 border-b border-[#312f27]/20">
-        <div className="max-w-[1100px] mx-auto text-center space-y-8">
+      <section className="relative overflow-hidden bg-[#788086] text-white pt-16 sm:pt-24 pb-20 px-4 sm:px-8 border-b border-[#312f27]/20">
+        <div className="max-w-[1100px] mx-auto text-center space-y-8 relative z-10">
 
           {/* Display Wordmark: lowercase, bold sunflower yellow (#ffc500) */}
           <div className="space-y-3">
@@ -557,6 +557,9 @@ export default function PortfolioHome({ onNavigateTab, onAskInChat, onTriggerPit
           </div>
         </div>
       </footer>
+
+      {/* Free-Roaming Explorer Bot Companion */}
+      <RoamingCharacter />
     </div>
   )
 }
