@@ -129,13 +129,14 @@ async def get_pitch_endpoint():
     """
     system_prompt = build_system_prompt(candidate_data)
     pitch_query = (
-        "Deliver a compelling, articulate 60-second elevator pitch to a tech recruiter or hiring manager "
-        "explaining why Mahil Sonowal is an exceptional candidate for a Web Development Internship or Entry-Level Frontend Developer role. "
-        "Start by clearly stating that Mahil is an ambitious Master of Computer Applications (MCA) student at The Assam Royal Global University (SGPA 8.59) "
-        "who is actively seeking an internship to apply his hands-on frontend and AI engineering abilities. "
-        "Highlight why he stands out as an intern: he has already delivered 3 production-grade React 19 / Tailwind deployments (Mukuba Economic Research, CADS, Genesis), "
-        "leads an Assamese Folk Literature RAG AI research project, and works daily with Git, GitHub, Vite, and Supabase. "
-        "Use a title like 'Elevator Pitch: Why Mahil Sonowal is the Ideal Web Development Intern Candidate', followed by crisp bullet points with bold highlights and a strong closing statement."
+        "Deliver a compelling, high-impact 60-second elevator pitch explaining why Mahil Sonowal brings immediate value to an engineering team, product build, or technical collaboration. "
+        "Focus directly on tangible output, shipped code, and problem-solving capabilities: "
+        "1. Real Production Web Apps: Has delivered 3 live, client-facing applications using React 19, Tailwind CSS, Vite, and Supabase (Mukuba Economic Research, CADS, Genesis). "
+        "2. Applied AI & RAG Engineering: Actively building an Assamese Folk Literature RAG pipeline using Python, NLP, vector search, OCR, and multilingual embeddings. "
+        "3. Modern Frontend & Tooling: Fluent in modular component design, responsive UI, Git/GitHub, Vite, and full-stack integrations. "
+        "4. Practical Background: Master of Computer Applications (MCA) student at The Assam Royal Global University, open to frontend developer roles, React builds, internships, and high-impact engineering collaborations. "
+        "IMPORTANT: Do NOT lead with or overemphasize university marks/SGPA—let his real-world shipped code, architectural clarity, and AI capabilities be the primary highlights. "
+        "Use a crisp heading like 'Elevator Pitch: Why Mahil Sonowal Brings Real Value to Your Engineering Team', followed by structured bullet points, bold key takeaways, and a confident closing."
     )
 
     messages = [

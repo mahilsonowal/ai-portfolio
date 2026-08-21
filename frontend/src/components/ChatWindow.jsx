@@ -59,7 +59,7 @@ export default function ChatWindow({ messages, isStreaming, onSelectPrompt, onTr
               className="mb-10 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-[34px] bg-[#312f27] hover:bg-[#1a1814] text-[#ffc500] border-2 border-[#ffc500]/50 text-xs sm:text-sm font-bold tracking-tight shadow-[0_4px_14px_rgba(0,0,0,0.25)] transition-all cursor-pointer active:scale-98"
             >
               <Zap className="w-4 h-4 fill-[#ffc500] text-[#ffc500]" />
-              <span>Generate 60-Second Recruiter Pitch for Mahil</span>
+              <span>Generate 60-Second Elevator Pitch for Mahil</span>
             </button>
           )}
 

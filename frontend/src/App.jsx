@@ -105,7 +105,7 @@ export default function App() {
     const userMsg = {
       id: userMessageId,
       role: 'user',
-      content: '⚡ Why should we hire Mahil Sonowal? Give me your 60-second recruiter pitch.',
+      content: '⚡ Why should we work with Mahil Sonowal? Give me your 60-second elevator pitch.',
     }
     const aiMsgPlaceholder = { id: aiMessageId, role: 'assistant', content: '' }
 

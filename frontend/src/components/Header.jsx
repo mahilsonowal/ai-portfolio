@@ -117,8 +117,8 @@ export default function Header({
             <button
               onClick={() => handleTabSwitch('home')}
               className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${activeTab === 'home'
-                  ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
-                  : 'text-[#ffffff] hover:text-[#ffc500]'
+                ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
+                : 'text-[#ffffff] hover:text-[#ffc500]'
                 }`}
             >
               <Home className="w-3.5 h-3.5" />
@@ -128,8 +128,8 @@ export default function Header({
             <button
               onClick={() => handleTabSwitch('chat')}
               className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${activeTab === 'chat'
-                  ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
-                  : 'text-[#ffffff] hover:text-[#ffc500]'
+                ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
+                : 'text-[#ffffff] hover:text-[#ffc500]'
                 }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -139,8 +139,8 @@ export default function Header({
             <button
               onClick={() => handleTabSwitch('matcher')}
               className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${activeTab === 'matcher'
-                  ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
-                  : 'text-[#ffffff] hover:text-[#ffc500]'
+                ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
+                : 'text-[#ffffff] hover:text-[#ffc500]'
                 }`}
             >
               <Target className="w-3.5 h-3.5" />
@@ -258,8 +258,8 @@ export default function Header({
             <button
               onClick={() => handleTabSwitch('home')}
               className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${activeTab === 'home'
-                  ? 'bg-[#ffc500] text-[#312f27]'
-                  : 'text-[#e9e4d9]'
+                ? 'bg-[#ffc500] text-[#312f27]'
+                : 'text-[#e9e4d9]'
                 }`}
             >
               <Home className="w-3.5 h-3.5" />
@@ -269,8 +269,8 @@ export default function Header({
             <button
               onClick={() => handleTabSwitch('chat')}
               className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${activeTab === 'chat'
-                  ? 'bg-[#ffc500] text-[#312f27]'
-                  : 'text-[#e9e4d9]'
+                ? 'bg-[#ffc500] text-[#312f27]'
+                : 'text-[#e9e4d9]'
                 }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -280,8 +280,8 @@ export default function Header({
             <button
               onClick={() => handleTabSwitch('matcher')}
               className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${activeTab === 'matcher'
-                  ? 'bg-[#ffc500] text-[#312f27]'
-                  : 'text-[#e9e4d9]'
+                ? 'bg-[#ffc500] text-[#312f27]'
+                : 'text-[#e9e4d9]'
                 }`}
             >
               <Target className="w-3.5 h-3.5" />

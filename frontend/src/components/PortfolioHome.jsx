@@ -554,7 +554,6 @@ export default function PortfolioHome({ onNavigateTab, onAskInChat, onTriggerPit
 
           <div className="pt-8 border-t border-[#ffffff]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#b1afa7] gap-2">
             <span>© {new Date().getFullYear()} Mahil Sonowal. All rights reserved.</span>
-            <span>Powered by Groq</span>
           </div>
         </div>
       </footer>
