@@ -27,11 +27,17 @@ export default function Header({
   return (
     <header className="sticky top-0 z-30 w-full backdrop-blur-xl bg-slate-950/85 dark:bg-slate-950/85 light:bg-white/90 border-b border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 px-3 sm:px-8 py-2.5 sm:py-3 transition-colors">
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
-        {/* Profile / Avatar & Title */}
+        {/* Profile / Avatar & Title (Clickable to Home) */}
         <div className="flex items-center justify-between sm:justify-start gap-3 min-w-0">
-          <div className="flex items-center gap-3 min-w-0">
+          <button
+            type="button"
+            onClick={() => onTabChange('chat')}
+            className="flex items-center gap-3 min-w-0 text-left group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-2xl p-0.5 transition-transform"
+            title="Return to Home / AI Chat"
+            aria-label="Return to Home / AI Chat"
+          >
             <div className="relative flex-shrink-0">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[2px] shadow-lg shadow-indigo-500/20">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[2px] shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
                 <img
                   src={profilePic}
                   alt="Mahil Sonowal profile"
@@ -47,7 +53,7 @@ export default function Header({
 
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <h1 className="font-semibold text-sm sm:text-base text-slate-100 dark:text-slate-100 light:text-slate-900 truncate tracking-tight">
+                <h1 className="font-semibold text-sm sm:text-base text-slate-100 dark:text-slate-100 light:text-slate-900 truncate tracking-tight group-hover:text-indigo-400 transition-colors">
                   Mahil Sonowal
                 </h1>
                 <span className="hidden xs:inline-flex items-center gap-1 text-[10px] font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-full">
@@ -59,7 +65,7 @@ export default function Header({
                 Web Development Intern Applicant / Frontend Developer
               </p>
             </div>
-          </div>
+          </button>
 
           {/* Mobile Actions: Theme + Pitch + Reset */}
           <div className="flex sm:hidden items-center gap-1">
