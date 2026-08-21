@@ -111,16 +111,15 @@ export default function Header({
 
         {/* DESKTOP VIEW: Nav Pills */}
         <div className="hidden md:flex items-center gap-3">
-          
+
           {/* Main 3 Segment Buttons */}
           <div className="flex items-center bg-[#312f27]/30 border border-[#ffffff]/10 p-1 rounded-[22px]">
             <button
               onClick={() => handleTabSwitch('home')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'home'
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${activeTab === 'home'
                   ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
                   : 'text-[#ffffff] hover:text-[#ffc500]'
-              }`}
+                }`}
             >
               <Home className="w-3.5 h-3.5" />
               <span>Portfolio</span>
@@ -128,11 +127,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('chat')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'chat'
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${activeTab === 'chat'
                   ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
                   : 'text-[#ffffff] hover:text-[#ffc500]'
-              }`}
+                }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>AI Chat</span>
@@ -140,11 +138,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('matcher')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'matcher'
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${activeTab === 'matcher'
                   ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
                   : 'text-[#ffffff] hover:text-[#ffc500]'
-              }`}
+                }`}
             >
               <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>
@@ -260,11 +257,10 @@ export default function Header({
           <div className="grid grid-cols-3 gap-1.5 p-1 bg-black/40 rounded-[12px]">
             <button
               onClick={() => handleTabSwitch('home')}
-              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${
-                activeTab === 'home'
+              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${activeTab === 'home'
                   ? 'bg-[#ffc500] text-[#312f27]'
                   : 'text-[#e9e4d9]'
-              }`}
+                }`}
             >
               <Home className="w-3.5 h-3.5" />
               <span>Home</span>
@@ -272,11 +268,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('chat')}
-              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${
-                activeTab === 'chat'
+              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${activeTab === 'chat'
                   ? 'bg-[#ffc500] text-[#312f27]'
                   : 'text-[#e9e4d9]'
-              }`}
+                }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>AI Chat</span>
@@ -284,11 +279,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('matcher')}
-              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${
-                activeTab === 'matcher'
+              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${activeTab === 'matcher'
                   ? 'bg-[#ffc500] text-[#312f27]'
                   : 'text-[#e9e4d9]'
-              }`}
+                }`}
             >
               <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>

@@ -130,9 +130,12 @@ async def get_pitch_endpoint():
     system_prompt = build_system_prompt(candidate_data)
     pitch_query = (
         "Deliver a compelling, articulate 60-second elevator pitch to a tech recruiter or hiring manager "
-        "explaining why Mahil Sonowal is an exceptional hire for a Web Development Intern or Frontend Developer role. "
-        "Highlight his verified real-world React 19/Tailwind deployments, strong MCA academics (8.45 SGPA), "
-        "and forward-looking Assamese RAG AI research. Format with clean bullet points and bold key takeaways."
+        "explaining why Mahil Sonowal is an exceptional candidate for a Web Development Internship or Entry-Level Frontend Developer role. "
+        "Start by clearly stating that Mahil is an ambitious Master of Computer Applications (MCA) student at The Assam Royal Global University (SGPA 8.59) "
+        "who is actively seeking an internship to apply his hands-on frontend and AI engineering abilities. "
+        "Highlight why he stands out as an intern: he has already delivered 3 production-grade React 19 / Tailwind deployments (Mukuba Economic Research, CADS, Genesis), "
+        "leads an Assamese Folk Literature RAG AI research project, and works daily with Git, GitHub, Vite, and Supabase. "
+        "Use a title like 'Elevator Pitch: Why Mahil Sonowal is the Ideal Web Development Intern Candidate', followed by crisp bullet points with bold highlights and a strong closing statement."
     )
 
     messages = [

@@ -190,8 +190,8 @@ This project was built to demonstrate practical, production-grade engineering ac
 ## 👤 Candidate Profile & Contact
 
 **Mahil Sonowal**  
-*Web Development Intern Applicant / Frontend Developer*  
-*MCA Student at The Assam Royal Global University, Guwahati, Assam, India*
+*MCA Student & Aspiring Web Development Intern / Frontend Developer*  
+*The Assam Royal Global University, Guwahati, Assam, India*
 
 - 📧 **Email**: [mahilsonowalpro5@gmail.com](mailto:mahilsonowalpro5@gmail.com)
 - 📞 **Phone**: [+91-9954910574](tel:+919954910574)
