@@ -102,11 +102,10 @@ export default function Header({
           <div className="flex items-center bg-slate-900/90 dark:bg-slate-900/90 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-200 p-1 rounded-xl shadow-inner w-full sm:w-auto justify-center">
             <button
               onClick={() => onTabChange('chat')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
-                activeTab === 'chat'
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeTab === 'chat'
                   ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
-              }`}
+                }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>AI Chat</span>
@@ -114,11 +113,10 @@ export default function Header({
 
             <button
               onClick={() => onTabChange('matcher')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer relative ${
-                activeTab === 'matcher'
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer relative ${activeTab === 'matcher'
                   ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
-              }`}
+                }`}
             >
               <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>

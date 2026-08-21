@@ -8,7 +8,17 @@ import { sendMessage, getPitchStream, getCandidateProfile } from './api/chat'
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('chat') // 'chat' | 'matcher'
-  const [messages, setMessages] = useState([])
+  
+  // Persist conversation history across browser reloads
+  const [messages, setMessages] = useState(() => {
+    try {
+      const saved = localStorage.getItem('ai_portfolio_chat_messages')
+      return saved ? JSON.parse(saved) : []
+    } catch (e) {
+      return []
+    }
+  })
+
   const [isStreaming, setIsStreaming] = useState(false)
   const [isInitializing, setIsInitializing] = useState(true)
   const [theme, setTheme] = useState(() => {
@@ -27,6 +37,15 @@ export default function App() {
     }
     localStorage.setItem('theme', theme)
   }, [theme])
+
+  // Persist messages to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('ai_portfolio_chat_messages', JSON.stringify(messages))
+    } catch (e) {
+      console.warn('Failed to persist chat messages to localStorage:', e)
+    }
+  }, [messages])
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
@@ -141,6 +160,11 @@ export default function App() {
   const handleClearChat = () => {
     if (window.confirm('Reset conversation history?')) {
       setMessages([])
+      try {
+        localStorage.removeItem('ai_portfolio_chat_messages')
+      } catch (e) {
+        console.warn('Failed to clear localStorage chat history:', e)
+      }
     }
   }
 
