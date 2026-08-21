@@ -1,4 +1,5 @@
-const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const RAW_API_URL =
+  import.meta.env.VITE_API_URL || 'https://ai-portfolio-backend-5pjv.onrender.com'
 const API_BASE_URL = RAW_API_URL.replace(/\/+$/, '')
 
 /**

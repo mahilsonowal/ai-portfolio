@@ -14,6 +14,13 @@ import {
   Target,
   MessageSquare,
   CheckCircle2,
+  Terminal,
+  Activity,
+  Cpu,
+  Database,
+  Globe,
+  Check,
+  Phone,
 } from 'lucide-react'
 import profilePic from '../assets/dp3.png'
 import JobMatcher from './JobMatcher'
@@ -46,67 +53,53 @@ const LinkedinIcon = ({ className = 'w-4 h-4' }) => (
 
 const PROJECTS = [
   {
-    name: 'Mukuba Economic Research & Consulting',
+    name: 'Mukuba Economic Research',
+    tag: 'International Consulting Platform',
+    location: 'Zambia / Remote',
     url: 'https://mukubaecon.io/',
-    tagline: 'International Economic Consulting Web Platform',
-    tech: ['React 19', 'Vite', 'Tailwind CSS', 'Supabase', 'SEO Optimization'],
+    tech: ['React 19', 'Vite', 'Tailwind CSS', 'Supabase'],
     description:
-      'Engineered a high-performance, responsive web application for an international economic research firm based in Zambia. Implemented comprehensive SEO best practices, structured metadata, and integrated Supabase backend.',
-    aiPrompt: 'Tell me about the Mukuba Economic Research project Mahil built, including the architecture and tech stack.',
+      'Full-scale responsive digital platform for an international economic research and consulting firm in Zambia. Includes SEO infrastructure and Supabase relational data backend.',
+    aiPrompt: 'Tell me about the Mukuba Economic Research platform Mahil developed.',
   },
   {
-    name: 'CADS — Createch Art & Design Studio',
+    name: 'CADS Createch Studio',
+    tag: 'Design Coaching Academy',
+    location: 'Guwahati, Assam',
     url: 'https://createchstudio.in',
-    tagline: 'Design Entrance Coaching Center Website',
-    tech: ['React.js', 'Material UI', 'Responsive Design', 'Client Portals'],
+    tech: ['React.js', 'Material UI', 'Responsive Design'],
     description:
-      'Developed the complete official website for a premier Guwahati-based coaching academy preparing students for national design entrance examinations (NID, NIFT, UCEED, NATA, Fine Arts).',
-    aiPrompt: 'Can you describe the CADS Createch Art & Design Studio website Mahil developed?',
+      'Official web platform for premier design entrance examination coaching (NID, NIFT, UCEED, NATA, Fine Arts) in Guwahati with responsive course modules.',
+    aiPrompt: 'Can you describe the CADS Createch Studio website Mahil built?',
   },
   {
-    name: 'Genesis — Complete Print Solutions',
+    name: 'Genesis Print Solutions',
+    tag: 'Commercial Print House',
+    location: 'Guwahati, Assam',
     url: 'https://genesispress.in',
-    tagline: 'Commercial Printing House Digital Showcase',
-    tech: ['React.js', 'Tailwind CSS', 'Modern UI/UX', 'Performance'],
+    tech: ['React.js', 'Tailwind CSS', 'Performance'],
     description:
-      'Created an elegant, responsive digital landing page for a commercial printing business in Six Mile, Guwahati, focusing on rapid load times, interactive service showcases, and clean layout geometry.',
+      'Digital showcase for a high-volume commercial offset printing business with high-speed rendering, catalog showcases, and order pipelines.',
     aiPrompt: 'What was Mahil’s role and tech approach for Genesis Print Solutions?',
   },
 ]
 
-const SKILL_CATEGORIES = [
+const SKILL_GROUPS = [
   {
-    category: 'Core Frontend',
-    skills: ['React.js (v18/19)', 'TypeScript', 'JavaScript (ES6+)', 'Redux Toolkit', 'Context API'],
+    title: 'Frontend Systems',
+    skills: ['React.js (18/19)', 'TypeScript', 'JavaScript (ES6+)', 'Redux Toolkit', 'Context API'],
   },
   {
-    category: 'UI & Layout Architecture',
-    skills: ['Tailwind CSS', 'Material UI', 'Mobile-first Design', 'CSS Grid & Flexbox', 'Responsive Systems'],
+    title: 'UI & Layout Architecture',
+    skills: ['Tailwind CSS', 'Material UI', 'Mobile-First Layouts', 'CSS Grid / Flexbox', 'Design Systems'],
   },
   {
-    category: 'AI & Backend Integrations',
-    skills: ['Python', 'FastAPI', 'RAG Pipelines', 'Vector Search', 'Supabase', 'RESTful APIs'],
+    title: 'AI & Backend Integrations',
+    skills: ['Python 3.11', 'FastAPI', 'RAG Pipelines', 'Vector Search', 'Supabase PostgreSQL'],
   },
   {
-    category: 'Tooling & Workflow',
-    skills: ['Git & GitHub', 'Vite', 'npm / Node', 'SEO Optimization', 'Deployment (Vercel/Render)'],
-  },
-]
-
-const EDUCATION = [
-  {
-    degree: 'Master of Computer Applications (MCA)',
-    institution: 'The Assam Royal Global University, Guwahati',
-    duration: '2025 – 2027',
-    score: 'SGPA 8.59 (2nd Semester)',
-    highlight: 'Active Research in NLP / RAG for Assamese Folk Literature',
-  },
-  {
-    degree: 'Bachelor of Computer Applications (BCA)',
-    institution: 'Dibrugarh University',
-    duration: '2022 – 2025',
-    score: '75% Aggregate',
-    highlight: 'Core foundation in Computer Science, Data Structures & Web Technologies',
+    title: 'Tooling & Deployment',
+    skills: ['Git / GitHub', 'Vite', 'npm / Node.js', 'SEO Best Practices', 'Vercel / Render'],
   },
 ]
 
@@ -119,343 +112,421 @@ export default function PortfolioHome({ onNavigateTab, onAskInChat, onTriggerPit
   }
 
   return (
-    <div className="flex-1 w-full overflow-y-auto bg-[#ffffff] text-[#1f1f1f] scroll-smooth">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-8 sm:py-14 space-y-16 sm:space-y-24">
+    <div className="flex-1 w-full overflow-y-auto bg-[#ffffff] text-[#312f27] font-sans antialiased selection:bg-[#ffc500] selection:text-[#312f27]">
 
-        {/* HERO SECTION */}
-        <section className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 sm:gap-12 pt-2 sm:pt-4">
-          <div className="flex-1 space-y-5 max-w-2xl">
+      {/* 1. SLATE GRAY HERO CANVAS (#788086) */}
+      <section className="bg-[#788086] text-white pt-16 sm:pt-24 pb-20 px-4 sm:px-8 border-b border-[#312f27]/20">
+        <div className="max-w-[1100px] mx-auto text-center space-y-8">
 
-            {/* Eyebrow Label */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f6f6f6] border border-[#e7e7e7] text-[#594ff4] text-[11px] sm:text-xs font-bold uppercase tracking-[0.075em]">
-              <span className="w-2 h-2 rounded-full bg-[#594ff4] animate-pulse"></span>
-              Software Developer — Web & AI
-            </div>
-
-            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#1f1f1f] leading-[1.08]">
-              Building scalable web applications & exploring AI.
+          {/* Display Wordmark: lowercase, bold sunflower yellow (#ffc500) */}
+          <div className="space-y-3">
+            <span className="text-xs sm:text-sm uppercase tracking-[0.08em] font-extrabold text-[#ffc500] block">
+              WEB & AI DEVELOPER
+            </span>
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-[#ffc500] tracking-tight leading-[1.0] lowercase">
+              mahil sonowal
             </h1>
-
-            <p className="text-base sm:text-lg text-[#5d5d5d] leading-relaxed">
-              Hi, I'm <strong className="text-[#1f1f1f] font-semibold">Mahil Sonowal</strong>. I specialize in building responsive React & Tailwind applications with clean code architecture and researching Retrieval-Augmented Generation (RAG) pipelines in NLP.
+            <p className="text-xl sm:text-3xl font-bold text-[#ffffff] max-w-3xl mx-auto leading-snug tracking-tight">
+              Building modern React web apps & researching multilingual RAG pipelines.
             </p>
+          </div>
 
-            {/* Quick Action Pill CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button
-                onClick={() => onNavigateTab('chat')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#594ff4] hover:bg-[#483ee0] text-white text-xs sm:text-sm font-semibold tracking-tight transition-all shadow-sm cursor-pointer"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Chat with My AI</span>
-              </button>
+          {/* Subhead details */}
+          <p className="text-sm sm:text-base text-[#e9e4d9] max-w-2xl mx-auto leading-relaxed">
+            I care about clean architecture and component modularity as much as I care about building AI systems that actually work in the real world.
+          </p>
 
-              <button
-                onClick={onTriggerPitch}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-[#f6f6f6] border border-[#594ff4] text-[#594ff4] text-xs sm:text-sm font-semibold tracking-tight transition-all cursor-pointer"
-              >
-                <Zap className="w-4 h-4 fill-current" />
-                <span>Why Hire Me? (60s Pitch)</span>
-              </button>
+          {/* Harmonious Action CTA Pills (Carbon Black #312f27 + Paper White + Sand) */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+            <button
+              onClick={() => onNavigateTab('chat')}
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[34px] bg-[#312f27] hover:bg-[#1f1e18] text-[#ffc500] border-2 border-[#ffc500]/50 text-sm font-bold tracking-tight shadow-[0_4px_14px_rgba(0,0,0,0.3)] transition-all cursor-pointer active:scale-98"
+            >
+              <MessageSquare className="w-4 h-4 text-[#ffc500]" />
+              <span>Ask Mahil's AI Twin</span>
+            </button>
 
-              <button
-                onClick={scrollToJdMatcher}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f6f6f6] hover:bg-[#e7e7e7] border border-[#e7e7e7] text-[#1f1f1f] text-xs sm:text-sm font-semibold tracking-tight transition-all cursor-pointer"
-              >
-                <Target className="w-4 h-4 text-[#594ff4]" />
-                <span>Match Your JD</span>
-              </button>
+            <button
+              onClick={onTriggerPitch}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[34px] bg-[#ffffff] hover:bg-[#f6f6f6] text-[#312f27] text-sm font-bold tracking-tight shadow-[0_2px_8px_rgba(0,0,0,0.15)] transition-all cursor-pointer active:scale-98"
+            >
+              <Zap className="w-4 h-4 text-[#312f27] fill-[#ffc500]" />
+              <span>Why Hire Me? (60-Sec Pitch)</span>
+            </button>
+
+            <button
+              onClick={scrollToJdMatcher}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-[34px] bg-[#312f27]/40 hover:bg-[#312f27]/70 text-[#ffffff] border border-[#ffffff]/20 text-sm font-bold tracking-tight transition-all cursor-pointer"
+            >
+              <Target className="w-4 h-4 text-[#ffc500]" />
+              <span>Match Your Job Description</span>
+            </button>
+          </div>
+
+          {/* Device Showcase Stage (Playdate Retro Stage Visual) */}
+          <div className="pt-6 max-w-3xl mx-auto">
+            <div className="bg-[#ffc500] p-4 sm:p-6 rounded-[20px] shadow-2xl border-4 border-[#312f27] text-left text-[#312f27] space-y-4">
+              <div className="flex items-center justify-between border-b-2 border-[#312f27]/20 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#312f27]"></span>
+                  <span className="w-3 h-3 rounded-full bg-[#312f27]"></span>
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider">
+                    SYSTEM DASHBOARD • MAHIL.DEV
+                  </span>
+                </div>
+                <span className="text-[10px] font-extrabold bg-[#312f27] text-[#ffc500] px-2.5 py-0.5 rounded-[4px] uppercase">
+                  ACTIVE
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-[#ffffff] p-3.5 rounded-[6px] border-2 border-[#312f27] space-y-1">
+                  <span className="text-[10px] font-bold uppercase text-[#788086]">Currently</span>
+                  <div className="text-xl font-black text-[#312f27]">Open to Work</div>
+                  <p className="text-[11px] font-bold text-[#312f27]">Jobs & collaborations</p>
+                </div>
+                <div className="bg-[#ffffff] p-3.5 rounded-[6px] border-2 border-[#312f27] space-y-1">
+                  <span className="text-[10px] font-bold uppercase text-[#788086]">Production</span>
+                  <div className="text-xl font-black text-[#312f27]">3+ Web Apps</div>
+                  <p className="text-[11px] font-bold text-[#312f27]">React 19 & Supabase</p>
+                </div>
+                <div className="bg-[#ffffff] p-3.5 rounded-[6px] border-2 border-[#312f27] space-y-1">
+                  <span className="text-[10px] font-bold uppercase text-[#788086]">AI Research</span>
+                  <div className="text-xl font-black text-[#312f27]">RAG Pipeline</div>
+                  <p className="text-[11px] font-bold text-[#312f27]">Assamese Folk NLP</p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Profile Card Hero Visual */}
-          <div className="relative flex-shrink-0 w-full sm:w-auto flex justify-center">
-            <div className="relative p-3 rounded-[32px] bg-[#f6f6f6] border border-[#e7e7e7] shadow-sm">
-              <div className="w-48 h-56 sm:w-56 sm:h-64 rounded-[24px] overflow-hidden bg-white border border-[#e7e7e7]">
-                <img
-                  src={profilePic}
-                  alt="Mahil Sonowal"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div className="mt-3 px-2 flex items-center justify-between text-xs text-[#5d5d5d]">
-                <span className="flex items-center gap-1.5 font-medium text-[#1f1f1f]">
-                  <MapPin className="w-3.5 h-3.5 text-[#594ff4]" /> Guwahati, India
-                </span>
-                <span className="text-[11px] font-bold text-[#594ff4] bg-white px-2 py-0.5 rounded-full border border-[#e7e7e7]">
-                  Available for Roles
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* 2. SUNBEAM YELLOW SECTION BAND (#ffc500) */}
+      <section className="bg-[#ffc500] text-[#312f27] py-16 sm:py-20 px-4 sm:px-8">
+        <div className="max-w-[1100px] mx-auto space-y-10">
 
-        {/* METRICS / STATS BLOCK */}
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-
-          <div className="p-5 rounded-[24px] bg-[#f6f6f6] border border-[#e7e7e7] text-center space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#1f1f1f]">3+</span>
-            <p className="text-xs text-[#5d5d5d] uppercase tracking-wider font-semibold">
-              Production Web Apps
-            </p>
-          </div>
-          <div className="p-5 rounded-[24px] bg-[#f6f6f6] border border-[#e7e7e7] text-center space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#594ff4]">RAG</span>
-            <p className="text-xs text-[#5d5d5d] uppercase tracking-wider font-semibold">
-              NLP Research Project
-            </p>
-          </div>
-          <div className="p-5 rounded-[24px] bg-[#f6f6f6] border border-[#e7e7e7] text-center space-y-1">
-            <span className="text-2xl sm:text-3xl font-bold text-[#1f1f1f]">React 19</span>
-            <p className="text-xs text-[#5d5d5d] uppercase tracking-wider font-semibold">
-              Modern Frontend Stack
-            </p>
-          </div>
-        </section>
-
-        {/* FEATURED CLIENT PROJECTS */}
-        <section className="space-y-6">
-          <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1f1f1f] tracking-tight">
-              Featured Client Projects
+          <div className="text-left space-y-2 max-w-3xl">
+            <span className="text-xs font-black uppercase tracking-[0.08em] text-[#312f27]/70 block">
+              THE PHILOSOPHY
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              Simple, modular code that scales from prototype to production.
             </h2>
-            <p className="text-sm text-[#5d5d5d]">
-              Real-world web applications built with modern frontend architecture and clean UI layouts.
+            <p className="text-base sm:text-lg font-medium text-[#312f27]/85 leading-relaxed">
+              Every interface I build is engineered with modern React standards, mobile-first responsive geometry, and clean API integrations. No bloated libraries, no slow rendering.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Feature Highlights on Yellow */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-left">
+            <div className="bg-[#ffffff] p-6 rounded-[6px] border-2 border-[#312f27] shadow-sm space-y-2">
+              <div className="w-10 h-10 rounded-[6px] bg-[#ffc500] border-2 border-[#312f27] flex items-center justify-center text-[#312f27] font-black">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-[#312f27]">Clean React Stack</h3>
+              <p className="text-xs sm:text-sm text-[#312f27]/80 leading-relaxed font-medium">
+                Vite HMR, TypeScript typing, modular UI components, and state management via Redux Toolkit and Context API.
+              </p>
+            </div>
+
+            <div className="bg-[#ffffff] p-6 rounded-[6px] border-2 border-[#312f27] shadow-sm space-y-2">
+              <div className="w-10 h-10 rounded-[6px] bg-[#ffc500] border-2 border-[#312f27] flex items-center justify-center text-[#312f27] font-black">
+                <Database className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-[#312f27]">Backend & Cloud</h3>
+              <p className="text-xs sm:text-sm text-[#312f27]/80 leading-relaxed font-medium">
+                Supabase PostgreSQL, Python FastAPI endpoints, RESTful microservices, and automated Vercel/Render deployments.
+              </p>
+            </div>
+
+            <div className="bg-[#ffffff] p-6 rounded-[6px] border-2 border-[#312f27] shadow-sm space-y-2">
+              <div className="w-10 h-10 rounded-[6px] bg-[#ffc500] border-2 border-[#312f27] flex items-center justify-center text-[#312f27] font-black">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <h3 className="text-lg font-black text-[#312f27]">Grounded AI & RAG</h3>
+              <p className="text-xs sm:text-sm text-[#312f27]/80 leading-relaxed font-medium">
+                Retrieval-Augmented Generation for low-resource languages with dense vector embeddings and zero hallucinations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. PAPER WHITE GAME / PROJECT TILES (#ffffff with 2.85px radius) */}
+      <section className="bg-[#ffffff] py-20 px-4 sm:px-8 border-b border-[#efefef]">
+        <div className="max-w-[1100px] mx-auto space-y-12 text-left">
+
+          <div className="space-y-2">
+            <span className="text-xs font-black uppercase tracking-[0.08em] text-[#312f27] block">
+              CLIENT WORK
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-[#312f27] tracking-tight">
+              Featured Web Platforms
+            </h2>
+            <p className="text-base text-[#788086]">
+              Real client deployments with live URLs, clean responsive layouts, and production backend integrations.
+            </p>
+          </div>
+
+          {/* 3-Column Card Grid (2.85px radius, crisp retro edges) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PROJECTS.map((project, idx) => (
               <div
                 key={idx}
-                className="group flex flex-col justify-between p-6 rounded-[28px] bg-[#f6f6f6] border border-[#e7e7e7] hover:border-[#594ff4] transition-all space-y-5"
+                className="bg-[#ffffff] border-2 border-[#312f27] rounded-[2.85px] p-6 shadow-sm flex flex-col justify-between space-y-6 hover:translate-y-[-2px] transition-transform"
               >
                 <div className="space-y-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white text-[#594ff4] border border-[#e7e7e7]">
-                      {project.tagline}
+                  <div className="flex items-start justify-between">
+                    <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-[2px] bg-[#ffc500] text-[#312f27]">
+                      {project.tag}
                     </span>
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-1.5 rounded-full text-[#888888] hover:text-[#594ff4] hover:bg-white transition-colors"
-                      title="Visit Live Website"
+                      className="text-[#312f27] hover:text-[#788086] transition-colors"
+                      title="Visit Live Site"
                     >
                       <ExternalLink className="w-4 h-4" />
                     </a>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#1f1f1f] group-hover:text-[#594ff4] transition-colors">
+                  <h3 className="text-xl font-black text-[#312f27]">
                     {project.name}
                   </h3>
 
-                  <p className="text-xs text-[#5d5d5d] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#788086] leading-relaxed font-normal">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-2 border-t border-[#e7e7e7]">
-                  {/* Tech stack pill tags */}
+                <div className="space-y-4 pt-4 border-t-2 border-[#312f27]/10">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t, i) => (
                       <span
                         key={i}
-                        className="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-white text-[#1f1f1f] border border-[#e7e7e7]"
+                        className="text-[10px] font-bold px-2 py-0.5 rounded-[2px] bg-[#efefef] text-[#312f27]"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  {/* Ask AI Prompt Button */}
-                  <button
-                    onClick={() => onAskInChat(project.aiPrompt)}
-                    className="w-full flex items-center justify-between px-3.5 py-2 rounded-full bg-white hover:bg-[#594ff4] hover:text-white border border-[#e7e7e7] text-xs font-semibold text-[#1f1f1f] transition-all cursor-pointer group/btn"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-[#594ff4] group-hover/btn:text-white" />
-                      Ask AI about this project
-                    </span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center py-2.5 rounded-[28.5px] bg-[#312f27] hover:bg-[#1a1814] text-white text-xs font-bold transition-all shadow-sm"
+                    >
+                      Live Website ↗
+                    </a>
+                    <button
+                      onClick={() => onAskInChat(project.aiPrompt)}
+                      className="px-3.5 py-2.5 rounded-[28.5px] bg-[#ffc500] hover:bg-[#e6b000] text-[#312f27] text-xs font-bold transition-all cursor-pointer shadow-sm"
+                      title="Ask AI"
+                    >
+                      Ask AI 💬
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* AI & NLP RESEARCH SPOTLIGHT */}
-        <section className="p-6 sm:p-8 rounded-[32px] bg-[#f6f6f6] border border-[#e7e7e7] space-y-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-[0.075em] text-[#594ff4]">
-                ACADEMIC RESEARCH & AI
+      {/* 4. SAND CALLOUT & AI RAG RESEARCH SECTION (#e9e4d9) */}
+      <section className="bg-[#e9e4d9] py-20 px-4 sm:px-8 border-b border-[#312f27]/15 text-left">
+        <div className="max-w-[1100px] mx-auto space-y-10">
+
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <span className="text-xs font-black uppercase tracking-[0.08em] text-[#312f27] block">
+                ACADEMIC RESEARCH & NLP
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#1f1f1f] tracking-tight">
-                Assamese Folk Literature RAG Pipeline
+              <h2 className="text-3xl sm:text-5xl font-black text-[#312f27] tracking-tight">
+                Assamese Folk Literature RAG
               </h2>
             </div>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-white text-[#594ff4] border border-[#e7e7e7]">
-              Ongoing — Royal Global University
+            <span className="px-3.5 py-1.5 rounded-[28.5px] bg-[#312f27] text-[#ffc500] text-xs font-extrabold">
+              The Assam Royal Global University • 2025–2027
             </span>
           </div>
 
-          <p className="text-sm text-[#5d5d5d] leading-relaxed max-w-3xl">
-            Developing an end-to-end Retrieval-Augmented Generation (RAG) architecture tailored for low-resource regional languages. The system integrates OCR digitization of Assamese historical texts, hybrid dense + sparse vector search, and multilingual embeddings to deliver accurate, grounded semantic query answers without hallucinations.
-          </p>
+          {/* Speech-Bubble Conversational Callout */}
+          <div className="relative p-6 sm:p-8 bg-[#ffffff] border-2 border-[#312f27] rounded-[10px] space-y-4 shadow-sm">
+            <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#312f27]">
+              <Sparkles className="w-4 h-4 text-[#ffc500] fill-current" />
+              <span>Low-Resource Language Architecture</span>
+            </div>
 
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            {['Python', 'NLP', 'RAG Architecture', 'Vector Search', 'OCR Digitization', 'Multilingual Embeddings'].map(
-              (badge, i) => (
-                <span
-                  key={i}
-                  className="text-xs font-medium px-3 py-1 rounded-full bg-white text-[#1f1f1f] border border-[#e7e7e7]"
-                >
-                  {badge}
-                </span>
-              )
-            )}
-          </div>
+            <p className="text-sm sm:text-base font-medium text-[#312f27] leading-relaxed">
+              "Building an end-to-end Retrieval-Augmented Generation pipeline tailored for low-resource Assamese regional folklore. Combines OCR text normalization, dense multilingual vector embeddings (<code className="bg-[#efefef] px-1.5 py-0.5 rounded font-mono text-xs text-[#312f27] font-bold">multilingual-e5-base</code>), and hybrid sparse BM25 indexing for zero-hallucination grounded responses."
+            </p>
 
-          <div className="pt-2">
-            <button
-              onClick={() =>
-                onAskInChat(
-                  'Can you give me a deep dive into Mahil’s Assamese Folk Literature RAG research, methodology, and tools?'
-                )
-              }
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:border-[#594ff4] text-[#594ff4] border border-[#e7e7e7] text-xs font-semibold transition-all cursor-pointer"
-            >
-              <span>Ask AI Twin about the RAG Architecture</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </section>
-
-        {/* TECHNICAL SKILLS MATRIX */}
-        <section className="space-y-6">
-          <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1f1f1f] tracking-tight">
-              Technical Stack & Competencies
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {SKILL_CATEGORIES.map((cat, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-[24px] bg-[#f6f6f6] border border-[#e7e7e7] space-y-3"
-              >
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#594ff4]">
-                  {cat.category}
-                </h3>
-                <ul className="space-y-1.5 text-xs text-[#1f1f1f]">
-                  {cat.skills.map((skill, sIdx) => (
-                    <li key={sIdx} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#594ff4]"></span>
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="p-3 bg-[#e9e4d9]/50 rounded-[6px] border border-[#312f27]/20 text-xs">
+                <strong className="block text-[#312f27] font-bold">1. OCR Digitization</strong>
+                <span className="text-[#788086]">Extracts historical Assamese text archives</span>
               </div>
-            ))}
-          </div>
-        </section>
+              <div className="p-3 bg-[#e9e4d9]/50 rounded-[6px] border border-[#312f27]/20 text-xs">
+                <strong className="block text-[#312f27] font-bold">2. Hybrid Vector Index</strong>
+                <span className="text-[#788086]">Dense semantic search + BM25 keyword matching</span>
+              </div>
+              <div className="p-3 bg-[#e9e4d9]/50 rounded-[6px] border border-[#312f27]/20 text-xs">
+                <strong className="block text-[#312f27] font-bold">3. Grounded Synthesis</strong>
+                <span className="text-[#788086]">Strict citation verification to prevent drift</span>
+              </div>
+            </div>
 
-        {/* EDUCATION SECTION */}
-        <section className="space-y-6">
-          <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1f1f1f] tracking-tight">
-              Education & Degrees
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {EDUCATION.map((edu, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-[28px] bg-[#f6f6f6] border border-[#e7e7e7] space-y-2.5"
+            <div className="pt-2">
+              <button
+                onClick={() =>
+                  onAskInChat(
+                    'Can you give me a deep dive into Mahil’s Assamese Folk Literature RAG research, methodology, and tools?'
+                  )
+                }
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-[28.5px] bg-[#312f27] hover:bg-[#1a1814] text-[#ffc500] border border-[#ffc500]/40 text-xs font-bold tracking-tight transition-all cursor-pointer shadow-sm"
               >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs font-bold text-[#594ff4] px-2.5 py-0.5 rounded-full bg-white border border-[#e7e7e7]">
-                    {edu.duration}
-                  </span>
-                  <span className="text-xs font-bold text-[#1f1f1f] bg-white px-2.5 py-0.5 rounded-full border border-[#e7e7e7]">
-                    {edu.score}
+                <span>Ask AI Twin about the RAG Architecture ➜</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SKILLS MATRIX & EDUCATION (Paper White Section) */}
+      <section className="bg-[#ffffff] py-20 px-4 sm:px-8 border-b border-[#efefef] text-left">
+        <div className="max-w-[1100px] mx-auto space-y-16">
+
+          {/* Skills Grid */}
+          <div className="space-y-6">
+            <div className="space-y-1">
+              <span className="text-xs font-black uppercase tracking-[0.08em] text-[#312f27] block">
+                COMPETENCIES
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#312f27] tracking-tight">
+                Technical Stack
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {SKILL_GROUPS.map((group, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 bg-[#ffffff] border-2 border-[#312f27] rounded-[2.85px] space-y-3"
+                >
+                  <h3 className="text-xs font-black uppercase tracking-wider text-[#312f27]">
+                    {group.title}
+                  </h3>
+                  <ul className="space-y-1.5 text-xs text-[#312f27] font-medium">
+                    {group.skills.map((s, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-[#ffc500] border border-[#312f27]"></span>
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Academic Timeline */}
+          <div className="space-y-6">
+            <div className="space-y-1">
+              <span className="text-xs font-black uppercase tracking-[0.08em] text-[#312f27] block">
+                ACADEMICS
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-[#312f27] tracking-tight">
+                Education & Degrees
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 bg-[#efefef] border-2 border-[#312f27] rounded-[2.85px] space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold text-[#312f27]">2025 – 2027</span>
+                  <span className="text-xs font-black bg-[#ffc500] text-[#312f27] px-2 py-0.5 rounded-[2px]">
+                    SGPA 8.59 (2nd Sem)
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-[#1f1f1f]">
-                  {edu.degree}
+                <h3 className="text-lg font-black text-[#312f27]">
+                  Master of Computer Applications (MCA)
                 </h3>
-                <p className="text-xs text-[#5d5d5d]">
-                  {edu.institution}
+                <p className="text-xs text-[#788086] font-medium">
+                  The Assam Royal Global University, Guwahati
                 </p>
-                <p className="text-xs text-[#1f1f1f] pt-1 font-medium">
-                  • {edu.highlight}
+                <p className="text-xs text-[#312f27] font-semibold pt-1">
+                  • Focus on Natural Language Processing & Full-Stack Systems
                 </p>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* EMBEDDED JOB MATCHER SECTION */}
-        <section id="jd-matcher-section" className="space-y-4 pt-4">
-          <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1f1f1f] tracking-tight">
-              Instant Job Description Matcher
+              <div className="p-6 bg-[#efefef] border-2 border-[#312f27] rounded-[2.85px] space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-extrabold text-[#312f27]">2022 – 2025</span>
+                  <span className="text-xs font-black bg-[#ffc500] text-[#312f27] px-2 py-0.5 rounded-[2px]">
+                    75% Aggregate
+                  </span>
+                </div>
+                <h3 className="text-lg font-black text-[#312f27]">
+                  Bachelor of Computer Applications (BCA)
+                </h3>
+                <p className="text-xs text-[#788086] font-medium">
+                  Dibrugarh University
+                </p>
+                <p className="text-xs text-[#312f27] font-semibold pt-1">
+                  • Core CS: Data Structures, Algorithms, Database Management & Web Dev
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. EMBEDDED JOB MATCHER (Sunbeam Yellow Section) */}
+      <section id="jd-matcher-section" className="bg-[#ffc500] py-20 px-4 sm:px-8 border-b border-[#312f27]/20 text-left">
+        <div className="max-w-[1100px] mx-auto space-y-6">
+          <div className="space-y-2">
+            <span className="text-xs font-black uppercase tracking-[0.08em] text-[#312f27]/70 block">
+              RECRUITER SUITABILITY EVALUATOR
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-black text-[#312f27] tracking-tight">
+              Instant Job Description Fit Matcher
             </h2>
-            <p className="text-sm text-[#5d5d5d]">
-              Hiring managers & recruiters: paste your candidate requirements to get an objective fit assessment.
+            <p className="text-base text-[#312f27]/85 font-medium max-w-2xl">
+              Paste your role requirements below to receive an objective suitability analysis against Mahil's verified projects and skills.
             </p>
           </div>
 
-          <JobMatcher onAskInChat={onAskInChat} />
-        </section>
+          <div className="bg-[#ffffff] p-4 sm:p-6 rounded-[6px] border-4 border-[#312f27] shadow-xl">
+            <JobMatcher onAskInChat={onAskInChat} />
+          </div>
+        </div>
+      </section>
 
-        {/* INTERACTIVE AI TWIN CALLOUT BANNER */}
-        <section className="p-8 sm:p-10 rounded-[32px] bg-[#f6f6f6] border border-[#e7e7e7] text-center space-y-5">
-          <div className="w-12 h-12 rounded-full bg-white border border-[#e7e7e7] text-[#594ff4] flex items-center justify-center mx-auto shadow-sm">
-            <MessageSquare className="w-6 h-6" />
-          </div>
-          <div className="space-y-2 max-w-xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1f1f1f] tracking-tight">
-              Want to ask more questions?
-            </h2>
-            <p className="text-sm text-[#5d5d5d]">
-              Instead of manually browsing through a static resume, chat with an AI twin that knows every verified detail of Mahil's experience, code projects, and technical skills.
-            </p>
-          </div>
-          <div className="flex justify-center gap-3 pt-2">
-            <button
-              onClick={() => onNavigateTab('chat')}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#594ff4] hover:bg-[#483ee0] text-white text-xs sm:text-sm font-semibold tracking-tight transition-all cursor-pointer"
-            >
-              <span>Launch Full Interactive AI Chat</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </section>
-
-        {/* FOOTER */}
-        <footer className="mt-16 pt-12 pb-8 border-t border-[#e7e7e7] space-y-8">
+      {/* 7. FULL-BLEED CARBON FOOTER (#312f27) */}
+      <footer className="bg-[#312f27] text-white pt-16 pb-12 px-4 sm:px-8 text-left">
+        <div className="max-w-[1100px] mx-auto space-y-12">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div className="space-y-1">
-              <h3 className="text-lg font-bold text-[#1f1f1f]">
-                Mahil Sonowal
+
+            <div className="space-y-2">
+              <h3 className="text-2xl font-black text-[#ffc500] lowercase">
+                mahil sonowal
               </h3>
-              <p className="text-xs text-[#5d5d5d]">
-                Software Developer — Web & AI • Guwahati, Assam
+              <p className="text-xs sm:text-sm text-[#b1afa7] max-w-sm font-medium">
+                Software Developer — Web & AI • Guwahati, Assam, India
               </p>
             </div>
 
-            {/* Direct Contact Pills */}
+            {/* Direct Connect Pills */}
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="mailto:mahilsonowalpro5@gmail.com"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#f6f6f6] hover:bg-[#e7e7e7] border border-[#e7e7e7] text-xs font-semibold text-[#1f1f1f] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-[28.5px] bg-[#ffc500] hover:bg-[#e6b000] text-[#312f27] text-xs font-extrabold transition-all shadow-sm"
               >
-                <Mail className="w-3.5 h-3.5 text-[#594ff4]" />
+                <Mail className="w-3.5 h-3.5" />
                 <span>mahilsonowalpro5@gmail.com</span>
               </a>
 
@@ -463,8 +534,8 @@ export default function PortfolioHome({ onNavigateTab, onAskInChat, onTriggerPit
                 href="https://linkedin.com/in/mahil-sonowal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-[#f6f6f6] hover:bg-[#e7e7e7] border border-[#e7e7e7] text-[#1f1f1f] hover:text-[#594ff4] transition-colors"
-                title="LinkedIn"
+                className="p-2.5 rounded-[28.5px] bg-[#ffffff]/10 hover:bg-[#ffc500] hover:text-[#312f27] text-white transition-all"
+                title="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
@@ -473,19 +544,20 @@ export default function PortfolioHome({ onNavigateTab, onAskInChat, onTriggerPit
                 href="https://github.com/mahilsonowal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-[#f6f6f6] hover:bg-[#e7e7e7] border border-[#e7e7e7] text-[#1f1f1f] transition-colors"
-                title="GitHub"
+                className="p-2.5 rounded-[28.5px] bg-[#ffffff]/10 hover:bg-[#ffc500] hover:text-[#312f27] text-white transition-all"
+                title="GitHub Profile"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          <div className="text-center text-xs text-[#888888] pt-4 border-t border-[#e7e7e7]">
-            © {new Date().getFullYear()} Mahil Sonowal • Powered by Groq
+          <div className="pt-8 border-t border-[#ffffff]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#b1afa7] gap-2">
+            <span>© {new Date().getFullYear()} Mahil Sonowal. All rights reserved.</span>
+            <span>Powered by Groq • FastAPI • React</span>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
   )
 }

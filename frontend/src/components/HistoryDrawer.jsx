@@ -84,37 +84,37 @@ export default function HistoryDrawer({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end animate-fade-in">
+    <div className="fixed inset-0 z-50 flex justify-end animate-fade-in font-sans">
       {/* Backdrop */}
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-black/30 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
       />
 
-      {/* Drawer Sidebar (Porcelain #ffffff from DESIGN.md) */}
-      <div className="relative z-50 w-full max-w-md bg-[#ffffff] border-l border-[#e7e7e7] shadow-2xl flex flex-col h-full overflow-hidden text-[#1f1f1f]">
+      {/* Drawer Sidebar */}
+      <div className="relative z-50 w-full max-w-md bg-[#ffffff] border-l-2 border-[#312f27] shadow-2xl flex flex-col h-full overflow-hidden text-[#312f27]">
         
         {/* Drawer Header */}
-        <div className="p-5 border-b border-[#e7e7e7] flex items-center justify-between">
+        <div className="p-5 border-b-2 border-[#312f27]/10 flex items-center justify-between bg-[#efefef]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-full bg-[#f6f6f6] text-[#594ff4] border border-[#e7e7e7]">
+            <div className="p-2 rounded-[6px] bg-[#ffc500] text-[#312f27] border border-[#312f27]">
               <Clock className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-base text-[#1f1f1f] flex items-center gap-2">
+              <h3 className="font-black text-base text-[#312f27] flex items-center gap-2">
                 Conversation History
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-[#f6f6f6] text-[#594ff4] border border-[#e7e7e7]">
+                <span className="text-xs font-black px-2 py-0.5 rounded-[4px] bg-[#ffc500] text-[#312f27] border border-[#312f27]">
                   {messages.length} msgs
                 </span>
               </h3>
-              <p className="text-xs text-[#5d5d5d]">
-                Click any question to jump directly into the conversation
+              <p className="text-xs text-[#788086] font-medium">
+                Click any question to jump into the conversation
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full text-[#5d5d5d] hover:text-[#1f1f1f] hover:bg-[#f6f6f6] transition-colors cursor-pointer"
+            className="p-2 rounded-[6px] text-[#312f27] hover:bg-white transition-colors cursor-pointer"
             aria-label="Close history drawer"
           >
             <X className="w-5 h-5" />
@@ -122,15 +122,15 @@ export default function HistoryDrawer({
         </div>
 
         {/* Search & Action Bar */}
-        <div className="p-4 border-b border-[#e7e7e7] space-y-3 bg-[#f6f6f6]">
+        <div className="p-4 border-b-2 border-[#312f27]/10 space-y-3 bg-[#e9e4d9]/50">
           <div className="relative">
-            <Search className="w-4 h-4 text-[#888888] absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#788086] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search conversation topics..."
-              className="w-full bg-white border border-[#e7e7e7] rounded-full pl-10 pr-4 py-2 text-xs text-[#1f1f1f] placeholder-[#888888] focus:outline-none focus:border-[#594ff4]"
+              className="w-full bg-white border-2 border-[#312f27]/20 rounded-[28.5px] pl-10 pr-4 py-2 text-xs text-[#312f27] placeholder-[#788086] focus:outline-none focus:border-[#312f27] font-medium"
             />
           </div>
 
@@ -138,27 +138,27 @@ export default function HistoryDrawer({
             <button
               onClick={handleExportMarkdown}
               disabled={messages.length === 0}
-              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-white hover:border-[#594ff4] border border-[#e7e7e7] text-xs font-semibold text-[#1f1f1f] disabled:opacity-40 transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-[28.5px] bg-white hover:bg-[#ffc500] hover:text-[#312f27] border-2 border-[#312f27]/20 text-xs font-bold text-[#312f27] disabled:opacity-40 transition-all cursor-pointer shadow-xs"
               title="Download conversation as Markdown file"
             >
-              <Download className="w-3.5 h-3.5 text-[#594ff4]" />
+              <Download className="w-3.5 h-3.5" />
               <span>Export .md</span>
             </button>
 
             <button
               onClick={handleCopyAll}
               disabled={messages.length === 0}
-              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-white hover:border-[#594ff4] border border-[#e7e7e7] text-xs font-semibold text-[#1f1f1f] disabled:opacity-40 transition-all cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-[28.5px] bg-white hover:bg-[#ffc500] hover:text-[#312f27] border-2 border-[#312f27]/20 text-xs font-bold text-[#312f27] disabled:opacity-40 transition-all cursor-pointer shadow-xs"
               title="Copy entire chat transcript"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-[#594ff4]" />
-                  <span className="text-[#594ff4]">Copied!</span>
+                  <Check className="w-3.5 h-3.5 text-[#312f27]" />
+                  <span>Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-[#594ff4]" />
+                  <Copy className="w-3.5 h-3.5" />
                   <span>Copy All</span>
                 </>
               )}
@@ -172,7 +172,7 @@ export default function HistoryDrawer({
                     onClose()
                   }
                 }}
-                className="p-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 transition-colors cursor-pointer"
+                className="p-2 rounded-[28.5px] bg-rose-50 hover:bg-rose-100 text-rose-700 border-2 border-rose-200 transition-colors cursor-pointer"
                 title="Clear all history"
               >
                 <Trash2 className="w-4 h-4" />
@@ -184,34 +184,34 @@ export default function HistoryDrawer({
         {/* Message Feed / Questions List */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#ffffff]">
           {messages.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center p-6 text-[#888888] space-y-3">
-              <div className="w-12 h-12 rounded-full bg-[#f6f6f6] border border-[#e7e7e7] flex items-center justify-center text-[#594ff4]">
+            <div className="h-full flex flex-col items-center justify-center text-center p-6 text-[#788086] space-y-3">
+              <div className="w-12 h-12 rounded-[6px] bg-[#ffc500] border-2 border-[#312f27] flex items-center justify-center text-[#312f27]">
                 <MessageSquare className="w-6 h-6" />
               </div>
-              <p className="text-sm font-semibold text-[#1f1f1f]">
+              <p className="text-sm font-black text-[#312f27]">
                 No chat history yet
               </p>
-              <p className="text-xs max-w-xs leading-relaxed text-[#5d5d5d]">
+              <p className="text-xs max-w-xs leading-relaxed text-[#788086]">
                 Ask Mahil's AI twin any questions about his skills, projects, or research to build your transcript.
               </p>
             </div>
           ) : searchTerm ? (
             /* Search Results */
             <div className="space-y-2">
-              <span className="text-[11px] font-bold text-[#888888] uppercase tracking-[0.075em] block mb-2">
+              <span className="text-[11px] font-black text-[#788086] uppercase tracking-[0.08em] block mb-2">
                 MATCHING RESULTS ({filteredMessages.length})
               </span>
               {filteredMessages.map((msg, i) => (
                 <button
                   key={msg.id || i}
                   onClick={() => handleCardClick(msg.id || `msg-${msg.role}`)}
-                  className="w-full text-left p-3.5 rounded-[20px] bg-[#f6f6f6] hover:bg-white border border-[#e7e7e7] hover:border-[#594ff4] space-y-1 transition-all group cursor-pointer"
+                  className="w-full text-left p-3.5 rounded-[6px] bg-[#efefef] hover:bg-[#ffc500] border-2 border-[#312f27]/15 space-y-1 transition-all group cursor-pointer"
                 >
-                  <div className="flex items-center justify-between text-[11px] font-bold text-[#594ff4]">
+                  <div className="flex items-center justify-between text-[11px] font-black text-[#312f27]">
                     <span>{msg.role === 'user' ? '👤 QUESTION' : '🤖 AI ANSWER'}</span>
                     <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-0.5" />
                   </div>
-                  <p className="text-xs text-[#1f1f1f] line-clamp-3">
+                  <p className="text-xs text-[#312f27] line-clamp-3 font-medium">
                     {msg.content}
                   </p>
                 </button>
@@ -220,31 +220,31 @@ export default function HistoryDrawer({
           ) : (
             /* Questions Timeline */
             <div className="space-y-3">
-              <span className="text-[11px] font-bold text-[#888888] uppercase tracking-[0.075em] block mb-2">
+              <span className="text-[11px] font-black text-[#788086] uppercase tracking-[0.08em] block mb-2">
                 TOPIC TIMELINE ({userQuestions.length} QUERIES)
               </span>
               {userQuestions.map((q, idx) => (
                 <button
                   key={q.id || idx}
                   onClick={() => handleCardClick(q.id || `msg-user`)}
-                  className="w-full text-left group p-4 rounded-[20px] bg-[#f6f6f6] hover:bg-white border border-[#e7e7e7] hover:border-[#594ff4] transition-all space-y-2 cursor-pointer"
+                  className="w-full text-left group p-4 rounded-[6px] bg-[#efefef] hover:bg-[#ffc500] border-2 border-[#312f27]/15 transition-all space-y-2 cursor-pointer shadow-2xs"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-xs font-bold text-[#1f1f1f] group-hover:text-[#594ff4] transition-colors line-clamp-2">
+                    <p className="text-xs font-black text-[#312f27] line-clamp-2">
                       {q.content}
                     </p>
-                    <span className="flex-shrink-0 text-[10px] text-[#5d5d5d] px-2 py-0.5 rounded-full bg-white border border-[#e7e7e7] font-mono font-semibold">
+                    <span className="flex-shrink-0 text-[10px] text-[#312f27] px-2 py-0.5 rounded-[4px] bg-white border border-[#312f27]/20 font-mono font-bold">
                       #{userQuestions.length - idx}
                     </span>
                   </div>
 
                   {/* AI Preview Snippet */}
                   {messages[q.originalIndex + 1] && (
-                    <div className="flex items-center justify-between gap-2 text-[11px] text-[#5d5d5d] line-clamp-2 pl-2.5 border-l-2 border-[#594ff4]">
-                      <span className="line-clamp-2">
+                    <div className="flex items-center justify-between gap-2 text-[11px] text-[#788086] line-clamp-2 pl-2.5 border-l-2 border-[#312f27]">
+                      <span className="line-clamp-2 font-medium">
                         {messages[q.originalIndex + 1].content}
                       </span>
-                      <CornerDownRight className="w-3.5 h-3.5 text-[#594ff4] flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <CornerDownRight className="w-3.5 h-3.5 text-[#312f27] flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   )}
                 </button>

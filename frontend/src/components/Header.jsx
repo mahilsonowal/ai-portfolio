@@ -12,7 +12,6 @@ import {
 } from 'lucide-react'
 import profilePic from '../assets/dp3.png'
 
-// Minimalist monoline SVGs for social icons
 const GithubIcon = ({ className = 'w-4 h-4' }) => (
   <svg
     className={className}
@@ -76,55 +75,51 @@ export default function Header({
   }
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-[#ffffff]/90 backdrop-blur-md border-b border-[#e7e7e7] px-4 sm:px-8 py-3 transition-colors">
+    <header className="sticky top-0 z-40 w-full bg-[#788086]/95 backdrop-blur-md border-b border-[#312f27]/15 px-4 sm:px-8 py-3.5 transition-colors">
       <div className="max-w-[1200px] mx-auto flex items-center justify-between gap-4">
 
-        {/* BRAND: Avatar + Title (Clickable to Home) */}
+        {/* BRAND: Yellow / Paper White Signature Wordmark */}
         <button
           type="button"
           onClick={handleBrandClick}
-          className="flex items-center gap-3 min-w-0 text-left group cursor-pointer focus:outline-none rounded-2xl p-1 -ml-1 transition-all"
+          className="flex items-center gap-3 min-w-0 text-left group cursor-pointer focus:outline-none"
           title="Return to Home Portfolio"
           aria-label="Return to Home Portfolio"
         >
           <div className="relative flex-shrink-0">
-            <div className="w-10 h-10 rounded-[10px] bg-[#f6f6f6] border border-[#e7e7e7] p-[2px] overflow-hidden">
+            <div className="w-10 h-10 rounded-[6px] bg-[#ffc500] border border-[#312f27]/20 p-[2px] overflow-hidden shadow-sm">
               <img
                 src={profilePic}
                 alt="Mahil Sonowal"
-                className="w-full h-full object-cover object-top rounded-[8px]"
+                className="w-full h-full object-cover object-top rounded-[4px]"
               />
             </div>
-            {/* Signal Violet Status Pulse */}
             <span className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#594ff4] opacity-60"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#594ff4] border-2 border-white"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#ffc500] border-2 border-[#788086]"></span>
             </span>
           </div>
 
           <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <h1 className="font-bold text-[15px] sm:text-[16px] text-[#1f1f1f] truncate tracking-tight group-hover:text-[#594ff4] transition-colors">
-                Mahil Sonowal
-              </h1>
-            </div>
-            <p className="text-[12px] text-[#5d5d5d] truncate">
-              Building Web Apps & Exploring AI
+            <h1 className="font-extrabold text-lg sm:text-xl text-[#ffffff] group-hover:text-[#ffc500] transition-colors tracking-[-0.01em] lowercase">
+              mahil sonowal
+            </h1>
+            <p className="text-[11px] text-[#e9e4d9] font-medium tracking-tight">
+              Software Developer • Web & AI
             </p>
           </div>
         </button>
 
-        {/* DESKTOP VIEW: Navigation Segment Pill Tabs + Actions */}
+        {/* DESKTOP VIEW: Nav Pills */}
         <div className="hidden md:flex items-center gap-3">
           
-          {/* Main 3-Tab Segment Pills */}
-          <div className="flex items-center bg-[#f6f6f6] border border-[#e7e7e7] p-1 rounded-full">
+          {/* Main 3 Segment Buttons */}
+          <div className="flex items-center bg-[#312f27]/30 border border-[#ffffff]/10 p-1 rounded-[22px]">
             <button
               onClick={() => handleTabSwitch('home')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'home'
-                  ? 'bg-[#594ff4] text-white shadow-sm font-semibold'
-                  : 'text-[#5d5d5d] hover:text-[#1f1f1f]'
+                  ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
+                  : 'text-[#ffffff] hover:text-[#ffc500]'
               }`}
             >
               <Home className="w-3.5 h-3.5" />
@@ -133,10 +128,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('chat')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'chat'
-                  ? 'bg-[#594ff4] text-white shadow-sm font-semibold'
-                  : 'text-[#5d5d5d] hover:text-[#1f1f1f]'
+                  ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
+                  : 'text-[#ffffff] hover:text-[#ffc500]'
               }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -145,10 +140,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('matcher')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-[20px] text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'matcher'
-                  ? 'bg-[#594ff4] text-white shadow-sm font-semibold'
-                  : 'text-[#5d5d5d] hover:text-[#1f1f1f]'
+                  ? 'bg-[#ffc500] text-[#312f27] shadow-sm'
+                  : 'text-[#ffffff] hover:text-[#ffc500]'
               }`}
             >
               <Target className="w-3.5 h-3.5" />
@@ -158,38 +153,38 @@ export default function Header({
 
           {/* Desktop Right Action Bar */}
           <div className="flex items-center gap-2">
-            {/* Pitch Pill Button */}
+            {/* Pitch Pill */}
             <button
               onClick={handlePitchClick}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-white border border-[#594ff4] text-[#594ff4] hover:bg-[#594ff4] hover:text-white transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-[22px] text-xs font-bold bg-[#312f27] hover:bg-[#1a1814] text-[#ffc500] border border-[#ffc500]/40 transition-all shadow-md cursor-pointer active:scale-98"
               title="Generate a 60-Second Recruiter Pitch for Mahil"
             >
-              <Zap className="w-3.5 h-3.5 fill-current" />
-              <span>Why Hire Mahil?</span>
+              <Zap className="w-3.5 h-3.5 fill-current text-[#ffc500]" />
+              <span>Why Hire Me?</span>
             </button>
 
-            {/* History Pill Button */}
+            {/* History Button */}
             <button
               onClick={handleHistoryClick}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#1f1f1f] bg-[#f6f6f6] hover:bg-[#e7e7e7] border border-[#e7e7e7] transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-[22px] text-xs font-bold text-[#ffffff] bg-[#312f27]/40 hover:bg-[#312f27]/60 border border-[#ffffff]/15 transition-all cursor-pointer"
               title="Open Conversation History"
             >
-              <Clock className="w-3.5 h-3.5 text-[#594ff4]" />
+              <Clock className="w-3.5 h-3.5 text-[#ffc500]" />
               <span>History</span>
               {messageCount > 0 && (
-                <span className="text-[10px] px-1.5 py-0.2 bg-[#594ff4] text-white rounded-full font-mono font-bold">
+                <span className="text-[10px] px-1.5 py-0.2 bg-[#ffc500] text-[#312f27] rounded-full font-mono font-extrabold">
                   {messageCount}
                 </span>
               )}
             </button>
 
             {/* Social Pill Group */}
-            <div className="flex items-center bg-[#f6f6f6] border border-[#e7e7e7] rounded-full p-1">
+            <div className="flex items-center bg-[#312f27]/30 border border-[#ffffff]/10 rounded-[22px] p-1">
               <a
                 href="https://github.com/mahilsonowal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-full text-[#5d5d5d] hover:text-[#1f1f1f] hover:bg-white transition-colors"
+                className="p-1.5 rounded-full text-[#ffffff] hover:text-[#ffc500] transition-colors"
                 title="GitHub Profile"
                 aria-label="GitHub Profile"
               >
@@ -199,15 +194,15 @@ export default function Header({
                 href="https://linkedin.com/in/mahil-sonowal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-full text-[#5d5d5d] hover:text-[#594ff4] hover:bg-white transition-colors"
+                className="p-1.5 rounded-full text-[#ffffff] hover:text-[#ffc500] transition-colors"
                 title="LinkedIn Profile"
                 aria-label="LinkedIn Profile"
               >
-                <LinkedinIcon className="w-3.5 h-3.5" />
+                <LinkedinIcon className="w-4 h-4" />
               </a>
               <a
                 href="mailto:mahilsonowalpro5@gmail.com"
-                className="p-1.5 rounded-full text-[#5d5d5d] hover:text-[#594ff4] hover:bg-white transition-colors"
+                className="p-1.5 rounded-full text-[#ffffff] hover:text-[#ffc500] transition-colors"
                 title="Email Mahil"
                 aria-label="Email Mahil Sonowal"
               >
@@ -219,7 +214,7 @@ export default function Header({
             {activeTab === 'chat' && messageCount > 0 && (
               <button
                 onClick={handleClearClick}
-                className="p-2 rounded-full text-[#888888] hover:text-rose-600 hover:bg-rose-50 border border-[#e7e7e7] hover:border-rose-200 transition-all cursor-pointer"
+                className="p-2 rounded-full text-[#e9e4d9] hover:text-rose-300 hover:bg-rose-900/30 transition-all cursor-pointer"
                 title="Reset Conversation"
                 aria-label="Reset Conversation"
               >
@@ -229,29 +224,29 @@ export default function Header({
           </div>
         </div>
 
-        {/* MOBILE VIEW: Quick Pitch + Hamburger Menu Toggle */}
+        {/* MOBILE VIEW */}
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={handlePitchClick}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#594ff4] text-white text-xs font-semibold"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-[22px] bg-[#312f27] text-[#ffc500] border border-[#ffc500]/40 text-xs font-bold shadow-sm"
             title="60-Second Pitch"
           >
-            <Zap className="w-3.5 h-3.5 fill-current" />
+            <Zap className="w-3.5 h-3.5 fill-current text-[#ffc500]" />
             <span>Pitch</span>
           </button>
 
           <button
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className="p-2 rounded-full bg-[#f6f6f6] border border-[#e7e7e7] text-[#1f1f1f] hover:bg-[#e7e7e7] relative focus:outline-none"
+            className="p-2 rounded-[10px] bg-[#312f27]/40 border border-[#ffffff]/15 text-[#ffffff] hover:bg-[#312f27]/60 relative focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {isMobileMenuOpen ? (
-              <X className="w-5 h-5 text-[#1f1f1f]" />
+              <X className="w-5 h-5 text-white" />
             ) : (
-              <Menu className="w-5 h-5 text-[#1f1f1f]" />
+              <Menu className="w-5 h-5 text-white" />
             )}
             {messageCount > 0 && !isMobileMenuOpen && (
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#594ff4] text-[9px] font-bold text-white">
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#ffc500] text-[#312f27] text-[9px] font-bold">
                 {messageCount}
               </span>
             )}
@@ -259,17 +254,16 @@ export default function Header({
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN MENU FLYOUT */}
+      {/* MOBILE DROPDOWN MENU */}
       {isMobileMenuOpen && (
-        <div className="md:hidden mt-3 p-4 bg-[#f6f6f6] border border-[#e7e7e7] rounded-[24px] space-y-3 shadow-lg">
-          {/* 1. Main Navigation 3 Tabs */}
-          <div className="grid grid-cols-3 gap-1.5 p-1 bg-white rounded-full border border-[#e7e7e7]">
+        <div className="md:hidden mt-3 p-4 bg-[#312f27] text-white border border-[#ffffff]/15 rounded-[16px] space-y-3 shadow-2xl">
+          <div className="grid grid-cols-3 gap-1.5 p-1 bg-black/40 rounded-[12px]">
             <button
               onClick={() => handleTabSwitch('home')}
-              className={`flex items-center justify-center gap-1 py-2 rounded-full text-xs font-semibold transition-all ${
+              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${
                 activeTab === 'home'
-                  ? 'bg-[#594ff4] text-white shadow-sm'
-                  : 'text-[#5d5d5d]'
+                  ? 'bg-[#ffc500] text-[#312f27]'
+                  : 'text-[#e9e4d9]'
               }`}
             >
               <Home className="w-3.5 h-3.5" />
@@ -278,10 +272,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('chat')}
-              className={`flex items-center justify-center gap-1 py-2 rounded-full text-xs font-semibold transition-all ${
+              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${
                 activeTab === 'chat'
-                  ? 'bg-[#594ff4] text-white shadow-sm'
-                  : 'text-[#5d5d5d]'
+                  ? 'bg-[#ffc500] text-[#312f27]'
+                  : 'text-[#e9e4d9]'
               }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -290,10 +284,10 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('matcher')}
-              className={`flex items-center justify-center gap-1 py-2 rounded-full text-xs font-semibold transition-all ${
+              className={`flex items-center justify-center gap-1 py-2 rounded-[8px] text-xs font-bold transition-all ${
                 activeTab === 'matcher'
-                  ? 'bg-[#594ff4] text-white shadow-sm'
-                  : 'text-[#5d5d5d]'
+                  ? 'bg-[#ffc500] text-[#312f27]'
+                  : 'text-[#e9e4d9]'
               }`}
             >
               <Target className="w-3.5 h-3.5" />
@@ -301,74 +295,34 @@ export default function Header({
             </button>
           </div>
 
-          {/* 2. Actions List */}
-          <div className="space-y-2">
+          <div className="space-y-2 pt-1">
             <button
               onClick={handlePitchClick}
-              className="w-full flex items-center justify-between p-3 rounded-2xl bg-white border border-[#e7e7e7] text-[#1f1f1f] text-xs font-semibold hover:border-[#594ff4]"
+              className="w-full flex items-center justify-between p-3 rounded-[10px] bg-[#312f27] border border-[#ffc500]/40 text-[#ffc500] text-xs font-bold"
             >
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#594ff4] fill-[#594ff4]" />
+                <Zap className="w-4 h-4 text-[#ffc500] fill-current" />
                 <span>Why Hire Mahil? (60-Sec Pitch)</span>
               </div>
-              <span className="text-[10px] bg-[#594ff4]/10 text-[#594ff4] font-bold px-2 py-0.5 rounded-full">
+              <span className="text-[10px] bg-[#ffc500]/20 text-[#ffc500] font-bold px-2 py-0.5 rounded-full">
                 ⚡ Instant
               </span>
             </button>
 
             <button
               onClick={handleHistoryClick}
-              className="w-full flex items-center justify-between p-3 rounded-2xl bg-white border border-[#e7e7e7] text-[#1f1f1f] text-xs font-medium hover:border-[#594ff4]"
+              className="w-full flex items-center justify-between p-3 rounded-[10px] bg-white/10 text-white text-xs font-medium hover:bg-white/15"
             >
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#594ff4]" />
-                <span>Conversation History & Export</span>
+                <Clock className="w-4 h-4 text-[#ffc500]" />
+                <span>Conversation History</span>
               </div>
               {messageCount > 0 && (
-                <span className="text-[10px] bg-[#594ff4] text-white px-2 py-0.5 rounded-full font-mono font-bold">
+                <span className="text-[10px] bg-[#ffc500] text-[#312f27] px-2 py-0.5 rounded-full font-mono font-bold">
                   {messageCount} msgs
                 </span>
               )}
             </button>
-
-            {activeTab === 'chat' && messageCount > 0 && (
-              <button
-                onClick={handleClearClick}
-                className="w-full flex items-center gap-2 p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold"
-              >
-                <Trash2 className="w-4 h-4 text-rose-500" />
-                <span>Reset Conversation</span>
-              </button>
-            )}
-          </div>
-
-          {/* 3. Social Contacts Footer */}
-          <div className="pt-3 border-t border-[#e7e7e7] flex items-center justify-around text-xs text-[#5d5d5d]">
-            <a
-              href="https://github.com/mahilsonowal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 py-1 px-3 rounded-full hover:text-[#1f1f1f] hover:bg-white"
-            >
-              <GithubIcon className="w-3.5 h-3.5" />
-              <span>GitHub</span>
-            </a>
-            <a
-              href="https://linkedin.com/in/mahil-sonowal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 py-1 px-3 rounded-full hover:text-[#594ff4] hover:bg-white"
-            >
-              <LinkedinIcon className="w-3.5 h-3.5" />
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="mailto:mahilsonowalpro5@gmail.com"
-              className="flex items-center gap-1.5 py-1 px-3 rounded-full hover:text-[#594ff4] hover:bg-white"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Email</span>
-            </a>
           </div>
         </div>
       )}

@@ -154,9 +154,9 @@ export default function App() {
       const el = document.getElementById(messageId)
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        el.classList.add('ring-2', 'ring-[#594ff4]', 'bg-[#594ff4]/5', 'rounded-2xl', 'p-2')
+        el.classList.add('ring-2', 'ring-[#ffc500]', 'bg-[#ffc500]/10', 'rounded-2xl', 'p-2')
         setTimeout(() => {
-          el.classList.remove('ring-2', 'ring-[#594ff4]', 'bg-[#594ff4]/5', 'p-2')
+          el.classList.remove('ring-2', 'ring-[#ffc500]', 'bg-[#ffc500]/10', 'p-2')
         }, 2200)
       }
     }, 120)
@@ -180,7 +180,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-[#ffffff] text-[#1f1f1f] selection:bg-[#594ff4]/20 selection:text-[#594ff4] overflow-hidden font-sans">
+    <div className="flex flex-col h-screen bg-[#ffffff] text-[#312f27] selection:bg-[#ffc500] selection:text-[#312f27] overflow-hidden font-sans">
       {/* Persona & Navigation Header */}
       <Header
         activeTab={activeTab}
