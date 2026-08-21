@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Send, Sparkles, Loader2, Cpu } from 'lucide-react'
+import { Send, Loader2, Cpu } from 'lucide-react'
 
 export default function ChatInput({ onSendMessage, isStreaming }) {
   const [input, setInput] = useState('')
@@ -32,11 +32,11 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
   }
 
   return (
-    <div className="sticky bottom-0 w-full bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent pt-3 pb-3 sm:pb-5 px-3 sm:px-8">
+    <div className="sticky bottom-0 w-full bg-gradient-to-t from-white via-white/95 to-transparent pt-3 pb-4 sm:pb-6 px-4 sm:px-8">
       <div className="max-w-3xl mx-auto">
         <form
           onSubmit={handleSubmit}
-          className="relative flex items-end gap-2 bg-slate-900/90 border border-slate-800/90 rounded-2xl p-2 sm:p-2.5 shadow-2xl backdrop-blur-xl focus-within:border-indigo-500/50 focus-within:ring-2 focus-within:ring-indigo-500/20 transition-all"
+          className="relative flex items-end gap-2 bg-[#f6f6f6] border border-[#e7e7e7] rounded-[20px] p-2 sm:p-2.5 focus-within:border-[#594ff4] focus-within:bg-white transition-all shadow-sm"
         >
           {/* Text Area */}
           <textarea
@@ -52,32 +52,32 @@ export default function ChatInput({ onSendMessage, isStreaming }) {
                 ? 'AI is responding...'
                 : 'Ask about Mahil’s skills, projects, RAG research, or experience...'
             }
-            className="w-full bg-transparent text-slate-100 placeholder-slate-500 text-sm sm:text-base px-3 py-1.5 focus:outline-none resize-none max-h-40 min-h-[24px] disabled:opacity-60"
+            className="w-full bg-transparent text-[#1f1f1f] placeholder-[#888888] text-sm sm:text-[15px] px-3 py-1.5 focus:outline-none resize-none max-h-40 min-h-[24px] disabled:opacity-50"
           />
 
-          {/* Send Button */}
+          {/* Send Button (Signal Violet Pill from DESIGN.md) */}
           <button
             type="submit"
             disabled={!input.trim() || isStreaming}
             aria-label="Send message"
-            className="flex-shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 text-white disabled:text-slate-500 transition-all shadow-md shadow-indigo-600/20 disabled:shadow-none cursor-pointer disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+            className="flex-shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#594ff4] hover:bg-[#483ee0] disabled:bg-[#e7e7e7] text-white disabled:text-[#888888] transition-all cursor-pointer disabled:cursor-not-allowed focus:outline-none"
             title="Send Message"
           >
             {isStreaming ? (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-400" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#888888]" />
             ) : (
-              <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              <Send className="w-4 h-4" />
             )}
           </button>
         </form>
 
-        {/* Footer info & subtle tech attribution */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 mt-2 px-2 gap-1">
+        {/* Footer info (DESIGN.md Smoke text) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#888888] mt-2 px-2 gap-1">
           <span className="hidden sm:inline">
-            Press <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono text-[10px]">Enter ↵</kbd> to send, <kbd className="px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60 font-mono text-[10px]">Shift + Enter</kbd> for newline
+            Press <kbd className="px-1.5 py-0.5 rounded bg-white text-[#5d5d5d] border border-[#e7e7e7] font-mono text-[10px]">Enter ↵</kbd> to send, <kbd className="px-1.5 py-0.5 rounded bg-white text-[#5d5d5d] border border-[#e7e7e7] font-mono text-[10px]">Shift + Enter</kbd> for newline
           </span>
-          <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-400/80">
-            <Cpu className="w-3 h-3 text-indigo-400" /> Powered by <strong className="text-slate-300">Groq</strong>
+          <span className="inline-flex items-center gap-1 text-[11px]">
+            <Cpu className="w-3 h-3 text-[#594ff4]" /> Powered by <strong className="text-[#1f1f1f]">Groq</strong>
           </span>
         </div>
       </div>

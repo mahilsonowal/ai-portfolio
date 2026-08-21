@@ -102,33 +102,26 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
     }
   }
 
-  const getScoreColor = (score) => {
-    if (score >= 85) return 'from-emerald-500 to-teal-400 text-emerald-400'
-    if (score >= 70) return 'from-indigo-500 to-cyan-400 text-indigo-400'
-    if (score >= 50) return 'from-amber-500 to-yellow-400 text-amber-400'
-    return 'from-rose-500 to-pink-400 text-rose-400'
-  }
-
   return (
-    <div className="flex-1 w-full overflow-y-auto px-4 sm:px-8 py-6 max-w-4xl mx-auto space-y-6 animate-fade-in scroll-smooth">
-      {/* Header Banner */}
-      <div className="bg-gradient-to-r from-indigo-950/60 via-slate-900/90 to-purple-950/60 border border-indigo-500/20 rounded-3xl p-6 sm:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+    <div className="flex-1 w-full overflow-y-auto px-4 sm:px-8 py-8 max-w-[1000px] mx-auto space-y-8 animate-fade-in scroll-smooth bg-[#ffffff]">
+      
+      {/* Header Banner (DESIGN.md Cloud #f6f6f6 card) */}
+      <div className="bg-[#f6f6f6] border border-[#e7e7e7] rounded-[32px] p-6 sm:p-8 space-y-4">
+        <div className="space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.075em] bg-white text-[#594ff4] border border-[#e7e7e7]">
             <Briefcase className="w-3.5 h-3.5" />
-            Recruiter & Hiring Tool
+            RECRUITER & HIRING TOOL
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1f1f1f]">
             Job Description Fit Evaluator
           </h2>
-          <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
+          <p className="text-sm text-[#5d5d5d] max-w-2xl leading-relaxed">
             Paste any Job Description or internship posting below. The AI evaluator will compare Mahil's verified skills, projects, and academic background to generate an instant, honest suitability assessment.
           </p>
 
           {/* Quick Preset Badges */}
           <div className="pt-2">
-            <span className="text-xs text-slate-400 font-medium block mb-2">
+            <span className="text-xs text-[#888888] font-medium block mb-2">
               Or test with sample JD presets:
             </span>
             <div className="flex flex-wrap gap-2">
@@ -136,7 +129,7 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
                 <button
                   key={idx}
                   onClick={() => setJobDescription(sample.text)}
-                  className="text-xs px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-indigo-600/30 border border-slate-700/80 hover:border-indigo-500/40 text-slate-300 hover:text-white transition-all cursor-pointer"
+                  className="text-xs px-3.5 py-1.5 rounded-full bg-white hover:border-[#594ff4] hover:text-[#594ff4] border border-[#e7e7e7] text-[#1f1f1f] font-medium transition-all cursor-pointer"
                 >
                   + {sample.label}
                 </button>
@@ -148,17 +141,17 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
 
       {/* Input Section */}
       <form onSubmit={handleAnalyze} className="space-y-4">
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl backdrop-blur-sm relative">
-          <div className="flex items-center justify-between mb-2.5">
-            <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5 uppercase tracking-wider">
-              <FileText className="w-3.5 h-3.5 text-indigo-400" />
+        <div className="bg-[#f6f6f6] border border-[#e7e7e7] rounded-[28px] p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-bold text-[#1f1f1f] flex items-center gap-1.5 uppercase tracking-[0.075em]">
+              <FileText className="w-3.5 h-3.5 text-[#594ff4]" />
               Paste Job Description
             </label>
             {jobDescription && (
               <button
                 type="button"
                 onClick={() => setJobDescription('')}
-                className="text-xs text-slate-400 hover:text-rose-400 transition-colors"
+                className="text-xs text-[#888888] hover:text-rose-600 font-medium transition-colors cursor-pointer"
               >
                 Clear
               </button>
@@ -171,26 +164,27 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
             disabled={loading}
             rows={6}
             placeholder="Paste role requirements, tech stack, and responsibilities here..."
-            className="w-full bg-slate-950/80 border border-slate-800/80 rounded-xl p-3.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/30 resize-y transition-all font-mono leading-relaxed"
+            className="w-full bg-white border border-[#e7e7e7] rounded-2xl p-4 text-sm text-[#1f1f1f] placeholder-[#888888] focus:outline-none focus:border-[#594ff4] resize-y transition-all font-mono leading-relaxed"
           />
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-2 border-t border-slate-800/80">
-            <span className="text-xs text-slate-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-[#e7e7e7]">
+            <span className="text-xs text-[#5d5d5d]">
               {jobDescription.trim().length < 20 ? (
-                <span className="text-slate-500">
+                <span className="text-[#888888]">
                   ⚠️ Type/paste a JD (min 20 chars) or click a preset above to enable
                 </span>
               ) : (
-                <span className="text-emerald-400 font-medium">
+                <span className="text-[#594ff4] font-medium">
                   ✓ Ready for evaluation ({jobDescription.trim().length} characters)
                 </span>
               )}
             </span>
 
+            {/* Analyze CTA Button (Signal Violet Pill from DESIGN.md) */}
             <button
               type="submit"
               disabled={loading || jobDescription.trim().length < 20}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 disabled:from-slate-800 disabled:to-slate-800 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/20 disabled:shadow-none cursor-pointer disabled:cursor-not-allowed"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[#594ff4] hover:bg-[#483ee0] disabled:bg-[#e7e7e7] text-white disabled:text-[#888888] font-medium text-xs sm:text-sm tracking-tight transition-all cursor-pointer disabled:cursor-not-allowed active:scale-98"
             >
               {loading ? (
                 <>
@@ -210,8 +204,8 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
 
       {/* Error Display */}
       {error && (
-        <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-sm flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
+        <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" />
           <div>
             <strong className="block font-semibold">Evaluation Error</strong>
             {error}
@@ -219,36 +213,37 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
         </div>
       )}
 
-      {/* Results Section */}
+      {/* Results Section (DESIGN.md Porcelain / Cloud cards) */}
       {result && (
-        <div className="space-y-5 animate-fade-in pb-8">
+        <div className="space-y-6 animate-fade-in pb-12">
           {/* Top Score & Recommendation Card */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-slate-800">
-              {/* Score Metric */}
+          <div className="bg-[#f6f6f6] border border-[#e7e7e7] rounded-[32px] p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-[#e7e7e7]">
+              
+              {/* Score Metric Display */}
               <div className="flex items-center gap-5">
-                <div className="relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-950 border border-slate-800 shadow-inner">
+                <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border border-[#e7e7e7] shadow-sm">
                   <div className="text-center">
-                    <span className={`text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-br ${getScoreColor(result.suitability_score)} bg-clip-text text-transparent`}>
+                    <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#594ff4]">
                       {result.suitability_score}%
                     </span>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                      Fit Score
+                    <span className="block text-[10px] uppercase font-bold text-[#888888] tracking-wider">
+                      FIT SCORE
                     </span>
                   </div>
                 </div>
 
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                      Recommendation
+                    <span className="text-[11px] font-bold uppercase tracking-[0.075em] text-[#594ff4]">
+                      RECOMMENDATION
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                    <Award className="w-5 h-5 text-indigo-400" />
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1f1f1f] flex items-center gap-2">
+                    <Award className="w-5 h-5 text-[#594ff4]" />
                     {result.recommendation}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className="text-xs text-[#5d5d5d] mt-1">
                     Based on Mahil's verified projects, technical stack, and education.
                   </p>
                 </div>
@@ -258,16 +253,16 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
               <div className="flex items-center gap-2 self-stretch md:self-auto justify-end">
                 <button
                   onClick={handleCopyReport}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-[#e7e7e7] text-[#1f1f1f] border border-[#e7e7e7] transition-all cursor-pointer"
                 >
                   {copied ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400">Copied</span>
+                      <Check className="w-3.5 h-3.5 text-[#594ff4]" />
+                      <span className="text-[#594ff4]">Copied</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5" />
+                      <Copy className="w-3.5 h-3.5 text-[#594ff4]" />
                       Copy Report
                     </>
                   )}
@@ -277,7 +272,7 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
                     setResult(null)
                     setJobDescription('')
                   }}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-[#888888] hover:text-[#1f1f1f] hover:bg-white transition-all cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   Reset
@@ -287,11 +282,11 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
 
             {/* Executive Summary */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-indigo-400" />
-                Fit Assessment Summary
+              <h4 className="text-xs font-bold uppercase tracking-[0.075em] text-[#1f1f1f] mb-2 flex items-center gap-1.5">
+                <TrendingUp className="w-3.5 h-3.5 text-[#594ff4]" />
+                FIT ASSESSMENT SUMMARY
               </h4>
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80">
+              <p className="text-sm sm:text-[15px] text-[#1f1f1f] leading-relaxed bg-white p-5 rounded-2xl border border-[#e7e7e7]">
                 {result.summary}
               </p>
             </div>
@@ -299,18 +294,18 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
             {/* Strengths & Gaps Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
               {/* Matching Skills */}
-              <div className="bg-slate-950/60 border border-emerald-500/20 rounded-2xl p-4 sm:p-5 space-y-3">
-                <div className="flex items-center gap-2 text-emerald-400 font-semibold text-sm">
-                  <CheckCircle2 className="w-4 h-4" />
+              <div className="bg-white border border-[#e7e7e7] rounded-2xl p-5 space-y-3">
+                <div className="flex items-center gap-2 text-[#1f1f1f] font-bold text-xs uppercase tracking-wider">
+                  <CheckCircle2 className="w-4 h-4 text-[#594ff4]" />
                   Matching Skills & Strengths
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {result.matching_skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20"
+                      className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#f6f6f6] text-[#1f1f1f] border border-[#e7e7e7]"
                     >
-                      <Check className="w-3 h-3 text-emerald-400" />
+                      <Check className="w-3 h-3 text-[#594ff4]" />
                       {skill}
                     </span>
                   ))}
@@ -318,24 +313,24 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
               </div>
 
               {/* Missing Skills / Gaps */}
-              <div className="bg-slate-950/60 border border-amber-500/20 rounded-2xl p-4 sm:p-5 space-y-3">
-                <div className="flex items-center gap-2 text-amber-400 font-semibold text-sm">
-                  <AlertCircle className="w-4 h-4" />
-                  Missing Skills / Gaps
+              <div className="bg-white border border-[#e7e7e7] rounded-2xl p-5 space-y-3">
+                <div className="flex items-center gap-2 text-[#5d5d5d] font-bold text-xs uppercase tracking-wider">
+                  <AlertCircle className="w-4 h-4 text-[#888888]" />
+                  Missing Skills / Potential Gaps
                 </div>
                 {result.missing_skills.length > 0 ? (
                   <div className="flex flex-wrap gap-1.5">
                     {result.missing_skills.map((gap, idx) => (
                       <span
                         key={idx}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-amber-500/10 text-amber-300 border border-amber-500/20"
+                        className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-[#f6f6f6] text-[#5d5d5d] border border-[#e7e7e7]"
                       >
                         • {gap}
                       </span>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#5d5d5d]">
                     No major technical skill gaps identified for this role!
                   </p>
                 )}
@@ -345,16 +340,16 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
             {/* Standout Advantages */}
             {result.key_strengths && result.key_strengths.length > 0 && (
               <div className="pt-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">
-                  Key Standout Advantages
+                <h4 className="text-xs font-bold uppercase tracking-[0.075em] text-[#1f1f1f] mb-3">
+                  KEY STANDOUT ADVANTAGES
                 </h4>
                 <ul className="space-y-2">
                   {result.key_strengths.map((strength, idx) => (
                     <li
                       key={idx}
-                      className="text-xs sm:text-sm text-slate-300 flex items-start gap-2.5 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60"
+                      className="text-xs sm:text-sm text-[#1f1f1f] flex items-start gap-3 bg-white p-4 rounded-xl border border-[#e7e7e7]"
                     >
-                      <Sparkles className="w-4 h-4 text-indigo-400 flex-shrink-0 mt-0.5" />
+                      <Sparkles className="w-4 h-4 text-[#594ff4] flex-shrink-0 mt-0.5" />
                       <span>{strength}</span>
                     </li>
                   ))}
@@ -364,8 +359,8 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
 
             {/* Cross-Link to AI Chat */}
             {onAskInChat && (
-              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 bg-indigo-950/20 p-4 rounded-2xl border border-indigo-500/20">
-                <div className="text-xs text-slate-300">
+              <div className="pt-4 border-t border-[#e7e7e7] flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-[#e7e7e7]">
+                <div className="text-xs text-[#5d5d5d]">
                   Want to interview Mahil's AI twin regarding these specific requirements?
                 </div>
                 <button
@@ -374,7 +369,7 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
                       `Based on this job description, can you discuss your relevant experience and how you would address any missing areas like ${result.missing_skills.slice(0, 2).join(', ') || 'new tools'}?`
                     )
                   }
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-md shadow-indigo-600/20 cursor-pointer flex-shrink-0"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-[#594ff4] hover:bg-[#483ee0] text-white transition-all cursor-pointer flex-shrink-0"
                 >
                   Discuss in AI Chat
                   <ArrowRight className="w-3.5 h-3.5" />

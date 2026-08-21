@@ -27,7 +27,6 @@ export default function App() {
   const [isStreaming, setIsStreaming] = useState(false)
   const [isInitializing, setIsInitializing] = useState(true)
 
-
   // Persist master history to localStorage
   useEffect(() => {
     try {
@@ -155,9 +154,9 @@ export default function App() {
       const el = document.getElementById(messageId)
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        el.classList.add('ring-2', 'ring-indigo-400', 'bg-indigo-950/40', 'rounded-2xl', 'p-2')
+        el.classList.add('ring-2', 'ring-[#594ff4]', 'bg-[#594ff4]/5', 'rounded-2xl', 'p-2')
         setTimeout(() => {
-          el.classList.remove('ring-2', 'ring-indigo-400', 'bg-indigo-950/40', 'p-2')
+          el.classList.remove('ring-2', 'ring-[#594ff4]', 'bg-[#594ff4]/5', 'p-2')
         }, 2200)
       }
     }, 120)
@@ -181,7 +180,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-200 overflow-hidden font-sans">
+    <div className="flex flex-col h-screen bg-[#ffffff] text-[#1f1f1f] selection:bg-[#594ff4]/20 selection:text-[#594ff4] overflow-hidden font-sans">
       {/* Persona & Navigation Header */}
       <Header
         activeTab={activeTab}
@@ -194,7 +193,7 @@ export default function App() {
       />
 
       {/* Main Content View Switcher */}
-      <main className="flex-1 flex flex-col min-h-0 relative">
+      <main className="flex-1 flex flex-col min-h-0 relative bg-[#ffffff]">
         {activeTab === 'chat' ? (
           <>
             <ChatWindow
