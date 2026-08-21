@@ -45,6 +45,7 @@ const LinkedinIcon = ({ className = 'w-4 h-4' }) => (
 export default function Header({
   activeTab = 'chat',
   onTabChange,
+  onNewChat,
   onClearChat,
   onTriggerPitch,
   onOpenHistory,
@@ -53,6 +54,15 @@ export default function Header({
   onToggleTheme,
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const handleBrandClick = () => {
+    if (onNewChat) {
+      onNewChat()
+    } else {
+      onTabChange('chat')
+    }
+    setIsMobileMenuOpen(false)
+  }
 
   const handleTabSwitch = (tab) => {
     onTabChange(tab)
@@ -78,13 +88,13 @@ export default function Header({
     <header className="sticky top-0 z-30 w-full backdrop-blur-xl bg-slate-950/90 dark:bg-slate-950/90 border-b border-slate-800/80 px-3 sm:px-6 py-2.5 transition-colors shadow-sm">
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
 
-        {/* BRAND: Avatar + Title (Clickable) */}
+        {/* BRAND: Avatar + Title (Clickable: Starts New Chat Session) */}
         <button
           type="button"
-          onClick={() => handleTabSwitch('chat')}
+          onClick={handleBrandClick}
           className="flex items-center gap-2.5 min-w-0 text-left group cursor-pointer focus:outline-none rounded-xl p-1 -ml-1 transition-all"
-          title="Return to Home / AI Chat"
-          aria-label="Return to Home / AI Chat"
+          title="New Chat / Start Fresh Session"
+          aria-label="New Chat / Start Fresh Session"
         >
           <div className="relative flex-shrink-0">
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[1.5px] shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">

@@ -11,10 +11,13 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('chat') // 'chat' | 'matcher'
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
 
-  // Persist conversation history across browser reloads
-  const [messages, setMessages] = useState(() => {
+  // Current active chat session messages (empty by default for clean new chat)
+  const [messages, setMessages] = useState([])
+
+  // Master history log across all sessions stored in localStorage
+  const [allHistory, setAllHistory] = useState(() => {
     try {
-      const saved = localStorage.getItem('ai_portfolio_chat_messages')
+      const saved = localStorage.getItem('ai_portfolio_all_history')
       return saved ? JSON.parse(saved) : []
     } catch (e) {
       return []
@@ -40,14 +43,14 @@ export default function App() {
     localStorage.setItem('theme', theme)
   }, [theme])
 
-  // Persist messages to localStorage
+  // Persist master history to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('ai_portfolio_chat_messages', JSON.stringify(messages))
+      localStorage.setItem('ai_portfolio_all_history', JSON.stringify(allHistory))
     } catch (e) {
-      console.warn('Failed to persist chat messages to localStorage:', e)
+      console.warn('Failed to persist all history to localStorage:', e)
     }
-  }, [messages])
+  }, [allHistory])
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
@@ -76,35 +79,33 @@ export default function App() {
     const aiMessageId = `assistant-${Date.now()}`
 
     const userMsg = { id: userMessageId, role: 'user', content: text }
+    const aiMsgPlaceholder = { id: aiMessageId, role: 'assistant', content: '' }
     const previousHistory = [...messages]
 
-    setMessages((prev) => [
-      ...prev,
-      userMsg,
-      { id: aiMessageId, role: 'assistant', content: '' },
-    ])
+    setMessages((prev) => [...prev, userMsg, aiMsgPlaceholder])
     setIsStreaming(true)
 
     try {
-      await sendMessage(text, previousHistory, (chunk, fullText) => {
+      const fullResponse = await sendMessage(text, previousHistory, (chunk, fullText) => {
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === aiMessageId ? { ...msg, content: fullText } : msg
           )
         )
       })
+
+      // Add completed interaction to master history
+      const completedAiMsg = { id: aiMessageId, role: 'assistant', content: fullResponse }
+      setAllHistory((prev) => [...prev, userMsg, completedAiMsg])
     } catch (error) {
       console.error('Failed to receive response:', error)
+      const errorMsg = {
+        id: aiMessageId,
+        role: 'assistant',
+        content: "I'm having trouble connecting right now — please try again.",
+      }
       setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === aiMessageId
-            ? {
-                ...msg,
-                content:
-                  "I'm having trouble connecting right now — please try again.",
-              }
-            : msg
-        )
+        prev.map((msg) => (msg.id === aiMessageId ? errorMsg : msg))
       )
     } finally {
       setIsStreaming(false)
@@ -125,42 +126,48 @@ export default function App() {
       role: 'user',
       content: '⚡ Why should we hire Mahil Sonowal? Give me your 60-second recruiter pitch.',
     }
+    const aiMsgPlaceholder = { id: aiMessageId, role: 'assistant', content: '' }
 
-    setMessages((prev) => [
-      ...prev,
-      userMsg,
-      { id: aiMessageId, role: 'assistant', content: '' },
-    ])
+    setMessages((prev) => [...prev, userMsg, aiMsgPlaceholder])
     setIsStreaming(true)
 
     try {
-      await getPitchStream((chunk, fullText) => {
+      const fullResponse = await getPitchStream((chunk, fullText) => {
         setMessages((prev) =>
           prev.map((msg) =>
             msg.id === aiMessageId ? { ...msg, content: fullText } : msg
           )
         )
       })
+
+      const completedAiMsg = { id: aiMessageId, role: 'assistant', content: fullResponse }
+      setAllHistory((prev) => [...prev, userMsg, completedAiMsg])
     } catch (error) {
       console.error('Pitch generation error:', error)
+      const errorMsg = {
+        id: aiMessageId,
+        role: 'assistant',
+        content: "I'm having trouble generating the pitch right now — please try again in a moment.",
+      }
       setMessages((prev) =>
-        prev.map((msg) =>
-          msg.id === aiMessageId
-            ? {
-                ...msg,
-                content:
-                  "I'm having trouble generating the pitch right now — please try again in a moment.",
-              }
-            : msg
-        )
+        prev.map((msg) => (msg.id === aiMessageId ? errorMsg : msg))
       )
     } finally {
       setIsStreaming(false)
     }
   }
 
+  // Brand click: Start a fresh new chat session without showing past chat
+  const handleNewChat = () => {
+    setActiveTab('chat')
+    setMessages([])
+  }
+
+  // When a user selects a past item from the History Drawer:
+  // Restore all history messages to the view and scroll to the selected question
   const handleSelectHistoryMessage = (messageId) => {
     setActiveTab('chat')
+    setMessages(allHistory)
     setIsHistoryOpen(false)
 
     setTimeout(() => {
@@ -175,13 +182,15 @@ export default function App() {
     }, 120)
   }
 
+  // Clear active chat and wipe master history
   const handleClearChat = () => {
-    if (window.confirm('Reset conversation history?')) {
+    if (window.confirm('Reset current conversation and chat history?')) {
       setMessages([])
+      setAllHistory([])
       try {
-        localStorage.removeItem('ai_portfolio_chat_messages')
+        localStorage.removeItem('ai_portfolio_all_history')
       } catch (e) {
-        console.warn('Failed to clear localStorage chat history:', e)
+        console.warn('Failed to clear history:', e)
       }
     }
   }
@@ -196,10 +205,11 @@ export default function App() {
       <Header
         activeTab={activeTab}
         onTabChange={setActiveTab}
+        onNewChat={handleNewChat}
         onClearChat={handleClearChat}
         onTriggerPitch={handleTriggerPitch}
         onOpenHistory={() => setIsHistoryOpen(true)}
-        messageCount={messages.length}
+        messageCount={allHistory.filter((m) => m.role === 'user').length}
         theme={theme}
         onToggleTheme={toggleTheme}
       />
@@ -230,7 +240,7 @@ export default function App() {
       <HistoryDrawer
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
-        messages={messages}
+        messages={allHistory}
         onClearHistory={handleClearChat}
         onSelectMessage={handleSelectHistoryMessage}
       />
