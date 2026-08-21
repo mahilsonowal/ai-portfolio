@@ -50,99 +50,95 @@ export default function Header({
   onToggleTheme,
 }) {
   return (
-    <header className="sticky top-0 z-30 w-full backdrop-blur-xl bg-slate-950/85 dark:bg-slate-950/85 light:bg-white/90 border-b border-slate-800/80 dark:border-slate-800/80 light:border-slate-200 px-3 sm:px-8 py-2.5 sm:py-3 transition-colors">
-      <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
-        {/* Profile / Avatar & Title (Clickable to Home) */}
-        <div className="flex items-center justify-between sm:justify-start gap-3 min-w-0">
+    <header className="sticky top-0 z-30 w-full backdrop-blur-xl bg-slate-950/90 dark:bg-slate-950/90 border-b border-slate-800/80 px-3 sm:px-6 py-2 sm:py-2.5 transition-colors shadow-sm">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2.5">
+        
+        {/* ROW 1: Brand (Avatar + Name) & Mobile Quick Actions */}
+        <div className="flex items-center justify-between gap-2 min-w-0">
+          {/* Brand Link */}
           <button
             type="button"
             onClick={() => onTabChange('chat')}
-            className="flex items-center gap-3 min-w-0 text-left group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-2xl p-0.5 transition-transform"
+            className="flex items-center gap-2.5 min-w-0 text-left group cursor-pointer focus:outline-none rounded-xl p-1 -ml-1 transition-all"
             title="Return to Home / AI Chat"
             aria-label="Return to Home / AI Chat"
           >
             <div className="relative flex-shrink-0">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[2px] shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[1.5px] shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
                 <img
                   src={profilePic}
-                  alt="Mahil Sonowal profile"
-                  className="w-full h-full object-cover object-top rounded-[14px]"
+                  alt="Mahil Sonowal"
+                  className="w-full h-full object-cover object-top rounded-[10px]"
                 />
               </div>
-              {/* Live Status Indicator */}
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 sm:h-3.5 sm:w-3.5">
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 sm:h-3.5 sm:w-3.5 bg-emerald-500 border-2 border-slate-950"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-slate-950"></span>
               </span>
             </div>
 
             <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <h1 className="font-semibold text-sm sm:text-base text-slate-100 dark:text-slate-100 light:text-slate-900 truncate tracking-tight group-hover:text-indigo-400 transition-colors">
+              <div className="flex items-center gap-1.5">
+                <h1 className="font-bold text-sm sm:text-base text-slate-100 truncate tracking-tight group-hover:text-indigo-400 transition-colors">
                   Mahil Sonowal
                 </h1>
-                <span className="hidden xs:inline-flex items-center gap-1 text-[10px] font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-full">
-                  <Sparkles className="w-3 h-3 text-indigo-400" />
-                  AI Twin
+                <span className="inline-flex items-center gap-0.5 text-[9px] font-semibold bg-indigo-500/15 text-indigo-400 border border-indigo-500/25 px-1.5 py-0.2 rounded-full">
+                  <Sparkles className="w-2.5 h-2.5" />
+                  AI
                 </span>
               </div>
-              <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-400 light:text-slate-500 truncate">
-                Web Development Intern Applicant / Frontend Developer
+              <p className="text-[10px] sm:text-xs text-slate-400 truncate">
+                Frontend Developer & MCA Candidate
               </p>
             </div>
           </button>
 
-          {/* Mobile Actions: History + Pitch + Theme + Reset */}
-          <div className="flex sm:hidden items-center gap-1">
+          {/* Quick Actions (Always visible on mobile right side) */}
+          <div className="flex md:hidden items-center gap-1.5 flex-shrink-0">
+            {/* Mobile Pitch */}
+            <button
+              onClick={onTriggerPitch}
+              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 text-xs font-semibold"
+              title="60-Second Pitch"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400/30" />
+              <span>Pitch</span>
+            </button>
+
+            {/* Mobile History */}
             <button
               onClick={onOpenHistory}
-              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-indigo-400 text-xs font-semibold flex items-center gap-1 focus:outline-none"
-              title="View History"
+              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white relative"
+              title="Chat History"
+              aria-label="Chat History"
             >
-              <Clock className="w-3.5 h-3.5" />
+              <Clock className="w-4 h-4 text-indigo-400" />
               {messageCount > 0 && (
-                <span className="text-[10px] bg-indigo-600/30 text-indigo-300 px-1 rounded-full">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 text-[9px] font-bold text-white">
                   {messageCount}
                 </span>
               )}
             </button>
-            <button
-              onClick={onTriggerPitch}
-              className="p-1.5 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center gap-1 focus:outline-none"
-              title="60-Second Pitch"
-            >
-              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" />
-            </button>
+
+            {/* Mobile Theme */}
             <button
               onClick={onToggleTheme}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 focus:outline-none"
-              aria-label="Toggle theme"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 border border-slate-800/80 bg-slate-900/60"
+              aria-label="Toggle Theme"
             >
-              {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300" />
-              ) : (
-                <Moon className="w-4 h-4 text-slate-700" />
-              )}
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-400" />}
             </button>
-            {activeTab === 'chat' && messageCount > 0 && (
-              <button
-                onClick={onClearChat}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 focus:outline-none"
-                aria-label="Reset conversation"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            )}
           </div>
         </div>
 
-        {/* Tab Switcher & Desktop Actions */}
-        <div className="flex items-center justify-between sm:justify-end gap-2 flex-shrink-0">
-          {/* Navigation Mode Tabs */}
-          <div className="flex items-center bg-slate-900/90 dark:bg-slate-900/90 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-200 p-1 rounded-xl shadow-inner w-full sm:w-auto justify-center">
+        {/* ROW 2 on mobile / CENTER & RIGHT on desktop */}
+        <div className="flex items-center justify-between md:justify-end gap-2 sm:gap-3">
+          
+          {/* Main Navigation Segment Tabs */}
+          <div className="flex items-center bg-slate-900/90 border border-slate-800/90 p-0.5 sm:p-1 rounded-xl shadow-inner flex-1 md:flex-initial justify-center">
             <button
               onClick={() => onTabChange('chat')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+              className={`flex-1 md:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 activeTab === 'chat'
                   ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
@@ -154,7 +150,7 @@ export default function Header({
 
             <button
               onClick={() => onTabChange('matcher')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer relative ${
+              className={`flex-1 md:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 activeTab === 'matcher'
                   ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
@@ -162,94 +158,90 @@ export default function Header({
             >
               <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>
-              <span className="hidden md:inline-block ml-0.5 text-[9px] font-bold px-1.5 py-0.2 bg-indigo-400/20 text-indigo-300 rounded border border-indigo-400/30">
+              <span className="hidden sm:inline-block text-[9px] font-bold px-1.5 py-0.2 bg-indigo-400/20 text-indigo-300 rounded border border-indigo-400/30">
                 Recruiter
               </span>
             </button>
           </div>
 
-          {/* Desktop Controls: History + Pitch + Theme + Socials + Reset */}
-          <div className="hidden sm:flex items-center gap-1">
-            {/* Chat History Button */}
-            <button
-              onClick={onOpenHistory}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer mr-1"
-              title="Open Conversation History & Logs"
-            >
-              <Clock className="w-3.5 h-3.5 text-indigo-400" />
-              <span>History</span>
-              {messageCount > 0 && (
-                <span className="text-[10px] px-1.5 py-0.2 bg-indigo-500/20 text-indigo-300 rounded-full font-mono">
-                  {messageCount}
-                </span>
-              )}
-            </button>
-
-            {/* Why Hire Pitch Button */}
+          {/* Desktop Right Action Bar */}
+          <div className="hidden md:flex items-center gap-1.5">
+            {/* Desktop Pitch Button */}
             <button
               onClick={onTriggerPitch}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-amber-500/20 via-indigo-500/20 to-cyan-500/20 hover:from-amber-500/30 hover:to-indigo-500/30 text-amber-300 border border-amber-500/40 hover:border-amber-400 transition-all shadow-sm cursor-pointer mr-1"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-amber-500/20 via-indigo-500/20 to-cyan-500/20 hover:from-amber-500/30 hover:to-indigo-500/30 text-amber-300 border border-amber-500/40 hover:border-amber-400 transition-all shadow-sm cursor-pointer"
               title="Generate a 60-Second Recruiter Pitch for Mahil"
             >
               <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400/30" />
               <span>Why Hire Mahil?</span>
             </button>
 
+            {/* Desktop History Button */}
             <button
-              onClick={onToggleTheme}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition-colors border border-transparent hover:border-slate-700/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
-              title={
-                theme === 'dark'
-                  ? 'Switch to Light Mode'
-                  : 'Switch to Dark Mode'
-              }
-              aria-label="Toggle Light/Dark Theme"
+              onClick={onOpenHistory}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer"
+              title="Open Conversation History"
             >
-              {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300" />
-              ) : (
-                <Moon className="w-4 h-4 text-slate-700" />
+              <Clock className="w-3.5 h-3.5 text-indigo-400" />
+              <span>History</span>
+              {messageCount > 0 && (
+                <span className="text-[10px] px-1.5 py-0.2 bg-indigo-500/20 text-indigo-300 rounded-full font-mono font-bold">
+                  {messageCount}
+                </span>
               )}
             </button>
 
-            <a
-              href="https://github.com/mahilsonowal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition-colors border border-transparent hover:border-slate-700/60"
-              title="GitHub Profile"
-              aria-label="GitHub Profile"
+            {/* Desktop Theme Switcher */}
+            <button
+              onClick={onToggleTheme}
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition-colors border border-slate-800/80 bg-slate-900/60 cursor-pointer"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              aria-label="Toggle Theme"
             >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="https://linkedin.com/in/mahil-sonowal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-xl text-slate-400 hover:text-indigo-400 hover:bg-slate-800/80 transition-colors border border-transparent hover:border-slate-700/60"
-              title="LinkedIn Profile"
-              aria-label="LinkedIn Profile"
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="mailto:mahilsonowalpro5@gmail.com"
-              className="p-2 rounded-xl text-slate-400 hover:text-cyan-400 hover:bg-slate-800/80 transition-colors border border-transparent hover:border-slate-700/60"
-              title="Email Mahil"
-              aria-label="Email Mahil Sonowal"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-400" />}
+            </button>
 
+            {/* Social Pill Group */}
+            <div className="flex items-center bg-slate-900/80 border border-slate-800/80 rounded-xl p-0.5 ml-0.5">
+              <a
+                href="https://github.com/mahilsonowal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                title="GitHub Profile"
+                aria-label="GitHub Profile"
+              >
+                <GithubIcon className="w-3.5 h-3.5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/mahil-sonowal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-slate-800 transition-colors"
+                title="LinkedIn Profile"
+                aria-label="LinkedIn Profile"
+              >
+                <LinkedinIcon className="w-3.5 h-3.5" />
+              </a>
+              <a
+                href="mailto:mahilsonowalpro5@gmail.com"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition-colors"
+                title="Email Mahil"
+                aria-label="Email Mahil Sonowal"
+              >
+                <Mail className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            {/* Clear Chat Button */}
             {activeTab === 'chat' && messageCount > 0 && (
               <button
                 onClick={onClearChat}
-                className="ml-1 flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-slate-800 hover:border-rose-500/30 transition-all cursor-pointer"
+                className="p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-slate-800 hover:border-rose-500/30 transition-all cursor-pointer"
                 title="Reset Conversation"
                 aria-label="Reset Conversation"
               >
                 <Trash2 className="w-3.5 h-3.5" />
-                <span className="hidden md:inline">Reset</span>
               </button>
             )}
           </div>
