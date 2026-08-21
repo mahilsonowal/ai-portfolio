@@ -318,6 +318,59 @@ export default function Header({
               )}
             </button>
           </div>
+
+          {/* Mobile Social & Contact Links */}
+          <div className="pt-2 border-t border-[#ffffff]/10 space-y-2">
+            <span className="text-[10px] uppercase font-bold text-[#b1afa7] tracking-wider block px-1">
+              Connect & Profiles
+            </span>
+            <div className="grid grid-cols-3 gap-2">
+              <a
+                href="https://github.com/mahilsonowal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 p-2.5 rounded-[10px] bg-white/10 hover:bg-[#ffc500] hover:text-[#312f27] text-white text-xs font-bold transition-all"
+                title="GitHub Profile"
+              >
+                <GithubIcon className="w-4 h-4" />
+                <span>GitHub</span>
+              </a>
+
+              <a
+                href="https://linkedin.com/in/mahil-sonowal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 p-2.5 rounded-[10px] bg-white/10 hover:bg-[#ffc500] hover:text-[#312f27] text-white text-xs font-bold transition-all"
+                title="LinkedIn Profile"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+                <span>LinkedIn</span>
+              </a>
+
+              <a
+                href="mailto:mahilsonowalpro5@gmail.com"
+                className="flex items-center justify-center gap-1.5 p-2.5 rounded-[10px] bg-[#ffc500] hover:bg-[#e6b000] text-[#312f27] text-xs font-extrabold transition-all shadow-sm"
+                title="Email Mahil"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Email</span>
+              </a>
+            </div>
+
+            {/* Clear chat action in mobile if active in chat */}
+            {activeTab === 'chat' && messageCount > 0 && (
+              <button
+                onClick={() => {
+                  handleClearClick()
+                  setIsMobileMenuOpen(false)
+                }}
+                className="w-full flex items-center justify-center gap-2 p-2 rounded-[10px] bg-rose-500/15 text-rose-300 hover:bg-rose-500/25 border border-rose-500/30 text-xs font-bold transition-all mt-1"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Reset Chat Conversation</span>
+              </button>
+            )}
+          </div>
         </div>
       )}
     </header>
