@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_BASE_URL = RAW_API_URL.replace(/\/+$/, '')
 
 /**
  * Sends a message and conversation history to the FastAPI backend and streams the response chunks.

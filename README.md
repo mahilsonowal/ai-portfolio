@@ -28,8 +28,8 @@ Recruiters and hiring managers can chat directly with the AI representative to l
 | **Phase 7** | **Multi-Turn Conversational Memory & Context Windowing** | ✅ **Completed** |
 | **Phase 8** | **Recruiter JD Matching & Fit Evaluator Mode** | ✅ **Completed** |
 | **Phase 9** | **Backend Deployment & Production Hardening** | ✅ **Completed** |
-| **Phase 10** | Frontend Deployment (Vercel) & Environment Config | ⏳ Next |
-| **Phase 11** | Final Documentation, Polish & Production Release | ⏳ Pending |
+| **Phase 10** | **Frontend Deployment (Vercel) & Environment Config** | ✅ **Completed** |
+| **Phase 11** | Final Documentation, Polish & Production Release | ⏳ Next |
 
 ---
 
@@ -62,11 +62,15 @@ Portfolio/
 │   │   ├── App.jsx              # Main stateful chat & tab orchestrator
 │   │   ├── index.css            # Tailwind CSS 4 & typography
 │   │   └── main.jsx             # React DOM entrypoint
+│   ├── .env.example             # Frontend local environment template
+│   ├── .env.production          # Frontend production backend URL config
 │   ├── index.html
 │   ├── package.json
+│   ├── vercel.json              # Vercel SPA routing and header caching
 │   └── vite.config.js
 ├── Procfile                     # Root process file
 ├── render.yaml                  # Render Blueprint deployment config
+├── vercel.json                  # Root monorepo Vercel routing
 ├── README.md                    # Project documentation & progress tracker
 └── AI_Portfolio_Build_Prompts.md
 ```
