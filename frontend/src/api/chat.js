@@ -61,6 +61,49 @@ export async function sendMessage(message, history = [], onChunk) {
 }
 
 /**
+ * Streams the 60-second recruiter pitch from the backend.
+ *
+ * @param {Function} onChunk - Callback executed for each streamed token
+ * @returns {Promise<string>}
+ */
+export async function getPitchStream(onChunk) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/pitch`)
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null)
+      throw new Error(
+        errorData?.detail || `Server error during pitch generation: ${response.status}`
+      )
+    }
+
+    if (!response.body) {
+      throw new Error('ReadableStream not supported by browser or empty response body.')
+    }
+
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder('utf-8')
+    let fullText = ''
+
+    while (true) {
+      const { value, done } = await reader.read()
+      if (done) break
+
+      const chunk = decoder.decode(value, { stream: true })
+      fullText += chunk
+      if (onChunk) {
+        onChunk(chunk, fullText)
+      }
+    }
+
+    return fullText
+  } catch (error) {
+    console.error('API Error in getPitchStream:', error)
+    throw error
+  }
+}
+
+/**
  * Evaluates candidate fit against a job description.
  *
  * @param {string} jobDescription - Raw pasted job description

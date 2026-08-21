@@ -4,7 +4,7 @@ import ChatWindow from './components/ChatWindow'
 import ChatInput from './components/ChatInput'
 import JobMatcher from './components/JobMatcher'
 import LoadingSkeleton from './components/LoadingSkeleton'
-import { sendMessage, getCandidateProfile } from './api/chat'
+import { sendMessage, getPitchStream, getCandidateProfile } from './api/chat'
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('chat') // 'chat' | 'matcher'
@@ -40,7 +40,6 @@ export default function App() {
       } catch (err) {
         console.warn('Backend warm-up / initialization notice:', err.message)
       } finally {
-        // Smooth transition from skeleton to UI
         setTimeout(() => setIsInitializing(false), 400)
       }
     }
@@ -91,6 +90,54 @@ export default function App() {
     }
   }
 
+  // Bonus Option B: Trigger 60-Second Recruiter Pitch
+  const handleTriggerPitch = async () => {
+    if (isStreaming) return
+
+    setActiveTab('chat')
+
+    const userMessageId = `user-${Date.now()}`
+    const aiMessageId = `assistant-${Date.now()}`
+
+    const userMsg = {
+      id: userMessageId,
+      role: 'user',
+      content: '⚡ Why should we hire Mahil Sonowal? Give me your 60-second recruiter pitch.',
+    }
+
+    setMessages((prev) => [
+      ...prev,
+      userMsg,
+      { id: aiMessageId, role: 'assistant', content: '' },
+    ])
+    setIsStreaming(true)
+
+    try {
+      await getPitchStream((chunk, fullText) => {
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === aiMessageId ? { ...msg, content: fullText } : msg
+          )
+        )
+      })
+    } catch (error) {
+      console.error('Pitch generation error:', error)
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === aiMessageId
+            ? {
+                ...msg,
+                content:
+                  "I'm having trouble generating the pitch right now — please try again in a moment.",
+              }
+            : msg
+        )
+      )
+    } finally {
+      setIsStreaming(false)
+    }
+  }
+
   const handleClearChat = () => {
     if (window.confirm('Reset conversation history?')) {
       setMessages([])
@@ -108,6 +155,7 @@ export default function App() {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         onClearChat={handleClearChat}
+        onTriggerPitch={handleTriggerPitch}
         messageCount={messages.length}
         theme={theme}
         onToggleTheme={toggleTheme}
@@ -121,6 +169,7 @@ export default function App() {
               messages={messages}
               isStreaming={isStreaming}
               onSelectPrompt={handleSendMessage}
+              onTriggerPitch={handleTriggerPitch}
             />
 
             {/* Bottom Floating Input Dock */}

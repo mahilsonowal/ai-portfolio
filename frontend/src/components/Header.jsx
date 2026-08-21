@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sparkles, Mail, Trash2, MessageSquare, Target, Sun, Moon } from 'lucide-react'
+import { Sparkles, Mail, Trash2, MessageSquare, Target, Sun, Moon, Zap } from 'lucide-react'
 import profilePic from '../assets/dp3.png'
 
 // Lightweight inline SVGs for social icons
@@ -19,6 +19,7 @@ export default function Header({
   activeTab = 'chat',
   onTabChange,
   onClearChat,
+  onTriggerPitch,
   messageCount = 0,
   theme = 'dark',
   onToggleTheme,
@@ -60,11 +61,19 @@ export default function Header({
             </div>
           </div>
 
-          {/* Mobile Actions: Theme + Reset */}
+          {/* Mobile Actions: Theme + Pitch + Reset */}
           <div className="flex sm:hidden items-center gap-1">
             <button
+              onClick={onTriggerPitch}
+              className="p-1.5 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center gap-1 focus:outline-none"
+              title="60-Second Pitch"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" />
+              <span>Pitch</span>
+            </button>
+            <button
               onClick={onToggleTheme}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 focus:outline-none"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-700" />}
@@ -113,8 +122,18 @@ export default function Header({
             </button>
           </div>
 
-          {/* Desktop Controls: Theme + Socials + Reset */}
+          {/* Desktop Controls: Pitch + Theme + Socials + Reset */}
           <div className="hidden sm:flex items-center gap-1">
+            {/* Why Hire Pitch Button */}
+            <button
+              onClick={onTriggerPitch}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-amber-500/20 via-indigo-500/20 to-cyan-500/20 hover:from-amber-500/30 hover:to-indigo-500/30 text-amber-300 border border-amber-500/40 hover:border-amber-400 transition-all shadow-sm cursor-pointer mr-1"
+              title="Generate a 60-Second Recruiter Pitch for Mahil"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400/30" />
+              <span>Why Hire Mahil?</span>
+            </button>
+
             <button
               onClick={onToggleTheme}
               className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition-colors border border-transparent hover:border-slate-700/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"

@@ -26,6 +26,7 @@ An interactive, full-stack AI representative representing **Mahil Sonowal** (Fro
 - 🛡️ **Strict Anti-Hallucination Guardrails**: Programmed to answer strictly and ONLY from verified candidate profile data, gracefully redirecting queries about unlisted topics directly to Mahil's contact channels.
 - 🧠 **Multi-Turn Conversational Memory**: Sliding-window context management (retaining the last 20 messages) enables natural contextual follow-ups without exceeding token limits.
 - 🎯 **Recruiter Job Description Matcher**: A dedicated recruiter dashboard where hiring managers can paste any job posting to receive an objective **Fit Score (0–100%)**, matching strengths, skill gaps, and interview recommendations.
+- ⚡ **"Why Hire Mahil?" 60-Second Recruiter Pitch (Bonus Feature)**: A dedicated one-click elevator pitch generator that produces an authentic, persuasive hiring case based on Mahil's verified projects, academics, and RAG research.
 - 🎨 **Modern ChatGPT-Inspired Dark UI**: Polished glassmorphism design with responsive layouts, interactive starter prompt cards, one-click copy buttons, and rich Markdown rendering (tables, badges, and clickable links).
 
 ---
@@ -60,6 +61,7 @@ An interactive, full-stack AI representative representing **Mahil Sonowal** (Fro
 | **Phase 10** | **Frontend Deployment (Vercel) & Environment Config** | ✅ **Completed** |
 | **Phase 11** | **GitHub Repository, README & Comprehensive Documentation** | ✅ **Completed** |
 | **Phase 12** | **Final Polish (Themes, Skeleton, Accessibility & Favicon)** | ✅ **Completed** |
+| **Bonus Feature**| **"Why Hire Mahil?" 60-Second Recruiter Pitch Mode** | ✅ **Completed** |
 
 ---
 

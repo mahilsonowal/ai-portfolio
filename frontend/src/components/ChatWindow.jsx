@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import MessageBubble from './MessageBubble'
-import { Sparkles, Code2, Layers, BookOpen, GraduationCap } from 'lucide-react'
+import { Sparkles, Code2, Layers, BookOpen, GraduationCap, Zap } from 'lucide-react'
 import profilePic from '../assets/dp3.png'
 
 const SUGGESTED_PROMPTS = [
@@ -26,7 +26,7 @@ const SUGGESTED_PROMPTS = [
   },
 ]
 
-export default function ChatWindow({ messages, isStreaming, onSelectPrompt }) {
+export default function ChatWindow({ messages, isStreaming, onSelectPrompt, onTriggerPitch }) {
   const messagesEndRef = useRef(null)
 
   // Auto-scroll to bottom on new messages or stream chunks
@@ -38,10 +38,10 @@ export default function ChatWindow({ messages, isStreaming, onSelectPrompt }) {
     <div className="flex-1 w-full overflow-y-auto px-3 sm:px-8 py-4 sm:py-6 space-y-4 scroll-smooth">
       {/* Empty State / Welcome Screen */}
       {messages.length === 0 ? (
-        <div className="max-w-3xl mx-auto py-6 sm:py-12 flex flex-col items-center text-center animate-fade-in">
+        <div className="max-w-3xl mx-auto py-4 sm:py-8 flex flex-col items-center text-center animate-fade-in">
           {/* Glowing Avatar Hero */}
-          <div className="relative mb-5 sm:mb-6">
-            <div className="w-18 h-18 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[3px] shadow-2xl shadow-indigo-500/30">
+          <div className="relative mb-4 sm:mb-5">
+            <div className="w-16 h-16 sm:w-22 sm:h-22 rounded-3xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[3px] shadow-2xl shadow-indigo-500/30">
               <img
                 src={profilePic}
                 alt="Mahil Sonowal"
@@ -57,9 +57,20 @@ export default function ChatWindow({ messages, isStreaming, onSelectPrompt }) {
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
             Chat with Mahil's AI Twin
           </h2>
-          <p className="text-xs sm:text-base text-slate-400 max-w-lg mb-6 sm:mb-8 leading-relaxed px-2">
+          <p className="text-xs sm:text-sm text-slate-400 max-w-lg mb-5 sm:mb-6 leading-relaxed px-2">
             I am programmed to represent <strong className="text-slate-200">Mahil Sonowal</strong>—answering questions about his web development experience, projects, skills, and research.
           </p>
+
+          {/* Featured 60-Sec Recruiter Pitch Button */}
+          {onTriggerPitch && (
+            <button
+              onClick={onTriggerPitch}
+              className="mb-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-amber-500/20 via-indigo-600/30 to-cyan-500/20 hover:from-amber-500/30 hover:via-indigo-600/40 hover:to-cyan-500/30 border border-amber-500/40 hover:border-amber-400 text-amber-200 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-indigo-500/10 cursor-pointer group"
+            >
+              <Zap className="w-4 h-4 text-amber-400 fill-amber-400/40 group-hover:scale-110 transition-transform" />
+              <span>⚡ Generate 60-Second Recruiter Pitch for Mahil</span>
+            </button>
+          )}
 
           {/* Quick Starter Suggestions */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 text-left">

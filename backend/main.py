@@ -112,6 +112,42 @@ async def chat_endpoint(request: ChatRequest):
     )
 
 
+@app.get("/pitch", summary="Generate Why Hire Mahil 60-Second Pitch")
+async def get_pitch_endpoint():
+    """
+    Streams an authentic, persuasive 60-second hiring pitch for Mahil Sonowal based on verified portfolio data.
+    """
+    system_prompt = build_system_prompt(candidate_data)
+    pitch_query = (
+        "Deliver a compelling, articulate 60-second elevator pitch to a tech recruiter or hiring manager "
+        "explaining why Mahil Sonowal is an exceptional hire for a Web Development Intern or Frontend Developer role. "
+        "Highlight his verified real-world React 19/Tailwind deployments, strong MCA academics (8.45 SGPA), "
+        "and forward-looking Assamese RAG AI research. Format with clean bullet points and bold key takeaways."
+    )
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": pitch_query},
+    ]
+
+    def stream_generator() -> Generator[str, None, None]:
+        try:
+            for token in get_llm_response(messages):
+                yield token
+        except Exception as e:
+            yield f"\n[Error generating pitch: {str(e)}]"
+
+    return StreamingResponse(
+        stream_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+
 @app.post("/match-jd", response_model=JDMatchResponse, summary="Match Job Description")
 async def match_jd_endpoint(request: JDMatchRequest):
     """
