@@ -39,20 +39,6 @@ export default function ChatWindow({ messages, isStreaming, onSelectPrompt, onTr
       {/* Empty State / Welcome Screen */}
       {messages.length === 0 ? (
         <div className="max-w-3xl mx-auto py-4 sm:py-8 flex flex-col items-center text-center animate-fade-in">
-          {/* Glowing Avatar Hero */}
-          <div className="relative mb-4 sm:mb-5">
-            <div className="w-16 h-16 sm:w-22 sm:h-22 rounded-3xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[3px] shadow-2xl shadow-indigo-500/30">
-              <img
-                src={profilePic}
-                alt="Mahil Sonowal"
-                className="w-full h-full object-cover object-top rounded-[21px]"
-              />
-            </div>
-            <span className="absolute -bottom-1 -right-1 flex h-4 w-4">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-slate-950"></span>
-            </span>
-          </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
             Chat with Mahil's AI Twin
