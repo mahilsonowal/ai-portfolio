@@ -16,20 +16,25 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Configure CORS (supports configurable origins from env for production)
-raw_origins = os.getenv("ALLOWED_ORIGINS", "*")
-if raw_origins == "*":
-    allowed_origins = ["*"]
+# Configure CORS (supports wildcard or configurable origins from env for production)
+raw_origins = os.getenv("ALLOWED_ORIGINS", "*").strip()
+if raw_origins == "*" or not raw_origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 else:
     allowed_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allowed_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 # Maximum conversation history length (excluding system prompt and current query)
 MAX_HISTORY_MESSAGES = 20
