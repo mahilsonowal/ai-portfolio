@@ -77,7 +77,7 @@ export default function JobMatcher({ onAskInChat }) {
 
   const handleCopyReport = async () => {
     if (!result) return
-    const textReport = `--- MAHAL SONOWAL: JOB FIT EVALUATION REPORT ---
+    const textReport = `--- MAHIL SONOWAL: JOB FIT EVALUATION REPORT ---
 Suitability Score: ${result.suitability_score}%
 Recommendation: ${result.recommendation}
 
@@ -176,7 +176,15 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-2 border-t border-slate-800/80">
             <span className="text-xs text-slate-400">
-              {jobDescription.length} characters (min 20)
+              {jobDescription.trim().length < 20 ? (
+                <span className="text-slate-500">
+                  ⚠️ Type/paste a JD (min 20 chars) or click a preset above to enable
+                </span>
+              ) : (
+                <span className="text-emerald-400 font-medium">
+                  ✓ Ready for evaluation ({jobDescription.trim().length} characters)
+                </span>
+              )}
             </span>
 
             <button
