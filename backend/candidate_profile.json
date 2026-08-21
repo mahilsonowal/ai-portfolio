@@ -1,0 +1,113 @@
+{
+  "name": "Mahil Sonowal",
+  "title": "Web Development Intern Applicant / Frontend Developer",
+  "location": "Guwahati, Assam, India",
+  "contact": {
+    "email": "mahilsonowalpro5@gmail.com",
+    "phone": "+91-9954910574",
+    "linkedin": "linkedin.com/in/mahil-sonowal",
+    "github": "github.com/mahilsonowal"
+  },
+  "education": [
+    {
+      "degree": "Master of Computer Applications (MCA)",
+      "institution": "The Assam Royal Global University, Guwahati",
+      "duration": "2025-2027",
+      "score": "SGPA 8.45 (1st Semester)"
+    },
+    {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "institution": "Dibrugarh University",
+      "score": "75% Aggregate"
+    },
+    {
+      "degree": "Higher Secondary (12th)",
+      "institution": "R.D Junior College, Digboi",
+      "score": "85%"
+    },
+    {
+      "degree": "Matriculation (10th)",
+      "institution": "Little Star High School, Tengakhat",
+      "score": "75%"
+    }
+  ],
+  "skills": {
+    "languages": [
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "Python"
+    ],
+    "frontend": [
+      "React.js",
+      "Redux Toolkit",
+      "React Context API",
+      "Material UI",
+      "Tailwind CSS"
+    ],
+    "ui_layout": [
+      "Mobile-first Design",
+      "Flexbox",
+      "CSS Grid",
+      "Responsive Web Design"
+    ],
+    "tools": [
+      "Git",
+      "GitHub",
+      "Vite",
+      "npm",
+      "Supabase"
+    ],
+    "other": [
+      "Basic AI/ML knowledge",
+      "SEO Fundamentals"
+    ]
+  },
+  "projects": [
+    {
+      "name": "Mukuba Economic Research and Consulting Firm",
+      "url": "https://mukubaecon.io/",
+      "tech": [
+        "React 19",
+        "Vite",
+        "Tailwind CSS",
+        "Supabase"
+      ],
+      "description": "Modern, responsive web app for an international economic consulting firm in Zambia. Implemented SEO best practices and integrated Supabase as backend."
+    },
+    {
+      "name": "CADS - Createch Art & Design Studio",
+      "url": "https://createchstudio.in",
+      "tech": [
+        "React.js",
+        "Material UI",
+        "Responsive Design"
+      ],
+      "description": "Full website for a Guwahati-based coaching center (Ganeshguri) preparing students for design entrance exams (NID, NIFT, UCEED, NATA, Fine Arts)."
+    },
+    {
+      "name": "Genesis - House of Complete Print Solutions",
+      "url": "https://genesispress.in",
+      "tech": [
+        "React.js",
+        "Tailwind CSS"
+      ],
+      "description": "Landing page for a printing company in Six Mile, Barbari, Guwahati, focused on clean UI/UX and fast load times."
+    }
+  ],
+  "research_project": {
+    "name": "Assamese Folk Literature RAG",
+    "status": "Ongoing - Royal Global University",
+    "tech": [
+      "Python",
+      "NLP",
+      "RAG Pipeline",
+      "Vector Search",
+      "OCR",
+      "Multilingual Embeddings"
+    ],
+    "description": "Building a Retrieval-Augmented Generation pipeline for Assamese folk literature, combining OCR digitization, hybrid vector + keyword search, and multilingual embeddings for a low-resource regional language dataset."
+  },
+  "achievements": [],
+  "certifications": [],
+  "career_goal": "Building a strong foundation across full-stack web development and AI/ML, with a focus on creating practical, real-world applications. Open to internships, collaborations, and opportunities that offer hands-on project experience and continued growth as a developer."
+}
