@@ -1,16 +1,40 @@
 import React from 'react'
-import { Sparkles, Mail, Trash2, MessageSquare, Target, Sun, Moon, Zap } from 'lucide-react'
+import {
+  Sparkles,
+  Mail,
+  Trash2,
+  MessageSquare,
+  Target,
+  Sun,
+  Moon,
+  Zap,
+  Clock,
+} from 'lucide-react'
 import profilePic from '../assets/dp3.png'
 
 // Lightweight inline SVGs for social icons
-const GithubIcon = ({ className = "w-4 h-4" }) => (
-  <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+const GithubIcon = ({ className = 'w-4 h-4' }) => (
+  <svg
+    className={className}
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+    />
   </svg>
 )
 
-const LinkedinIcon = ({ className = "w-4 h-4" }) => (
-  <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+const LinkedinIcon = ({ className = 'w-4 h-4' }) => (
+  <svg
+    className={className}
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
     <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25a1.62 1.62 0 0 0-1.63 1.63 1.63 1.63 0 0 0 3.26 0c0-.9-.73-1.63-1.63-1.63z" />
   </svg>
 )
@@ -20,6 +44,7 @@ export default function Header({
   onTabChange,
   onClearChat,
   onTriggerPitch,
+  onOpenHistory,
   messageCount = 0,
   theme = 'dark',
   onToggleTheme,
@@ -67,22 +92,37 @@ export default function Header({
             </div>
           </button>
 
-          {/* Mobile Actions: Theme + Pitch + Reset */}
+          {/* Mobile Actions: History + Pitch + Theme + Reset */}
           <div className="flex sm:hidden items-center gap-1">
+            <button
+              onClick={onOpenHistory}
+              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-indigo-400 text-xs font-semibold flex items-center gap-1 focus:outline-none"
+              title="View History"
+            >
+              <Clock className="w-3.5 h-3.5" />
+              {messageCount > 0 && (
+                <span className="text-[10px] bg-indigo-600/30 text-indigo-300 px-1 rounded-full">
+                  {messageCount}
+                </span>
+              )}
+            </button>
             <button
               onClick={onTriggerPitch}
               className="p-1.5 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center gap-1 focus:outline-none"
               title="60-Second Pitch"
             >
               <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400/20" />
-              <span>Pitch</span>
             </button>
             <button
               onClick={onToggleTheme}
               className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 focus:outline-none"
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-700" />}
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-300" />
+              ) : (
+                <Moon className="w-4 h-4 text-slate-700" />
+              )}
             </button>
             {activeTab === 'chat' && messageCount > 0 && (
               <button
@@ -102,10 +142,11 @@ export default function Header({
           <div className="flex items-center bg-slate-900/90 dark:bg-slate-900/90 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-200 p-1 rounded-xl shadow-inner w-full sm:w-auto justify-center">
             <button
               onClick={() => onTabChange('chat')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${activeTab === 'chat'
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                activeTab === 'chat'
                   ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
-                }`}
+              }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>AI Chat</span>
@@ -113,10 +154,11 @@ export default function Header({
 
             <button
               onClick={() => onTabChange('matcher')}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer relative ${activeTab === 'matcher'
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer relative ${
+                activeTab === 'matcher'
                   ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20 font-semibold'
                   : 'text-slate-400 hover:text-slate-200'
-                }`}
+              }`}
             >
               <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>
@@ -126,8 +168,23 @@ export default function Header({
             </button>
           </div>
 
-          {/* Desktop Controls: Pitch + Theme + Socials + Reset */}
+          {/* Desktop Controls: History + Pitch + Theme + Socials + Reset */}
           <div className="hidden sm:flex items-center gap-1">
+            {/* Chat History Button */}
+            <button
+              onClick={onOpenHistory}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 transition-all cursor-pointer mr-1"
+              title="Open Conversation History & Logs"
+            >
+              <Clock className="w-3.5 h-3.5 text-indigo-400" />
+              <span>History</span>
+              {messageCount > 0 && (
+                <span className="text-[10px] px-1.5 py-0.2 bg-indigo-500/20 text-indigo-300 rounded-full font-mono">
+                  {messageCount}
+                </span>
+              )}
+            </button>
+
             {/* Why Hire Pitch Button */}
             <button
               onClick={onTriggerPitch}
@@ -141,10 +198,18 @@ export default function Header({
             <button
               onClick={onToggleTheme}
               className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/80 transition-colors border border-transparent hover:border-slate-700/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
-              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              title={
+                theme === 'dark'
+                  ? 'Switch to Light Mode'
+                  : 'Switch to Dark Mode'
+              }
               aria-label="Toggle Light/Dark Theme"
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-700" />}
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-300" />
+              ) : (
+                <Moon className="w-4 h-4 text-slate-700" />
+              )}
             </button>
 
             <a

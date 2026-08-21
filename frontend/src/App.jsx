@@ -4,11 +4,13 @@ import ChatWindow from './components/ChatWindow'
 import ChatInput from './components/ChatInput'
 import JobMatcher from './components/JobMatcher'
 import LoadingSkeleton from './components/LoadingSkeleton'
+import HistoryDrawer from './components/HistoryDrawer'
 import { sendMessage, getPitchStream, getCandidateProfile } from './api/chat'
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('chat') // 'chat' | 'matcher'
-  
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+
   // Persist conversation history across browser reloads
   const [messages, setMessages] = useState(() => {
     try {
@@ -180,6 +182,7 @@ export default function App() {
         onTabChange={setActiveTab}
         onClearChat={handleClearChat}
         onTriggerPitch={handleTriggerPitch}
+        onOpenHistory={() => setIsHistoryOpen(true)}
         messageCount={messages.length}
         theme={theme}
         onToggleTheme={toggleTheme}
@@ -206,6 +209,14 @@ export default function App() {
           <JobMatcher onAskInChat={handleSendMessage} />
         )}
       </main>
+
+      {/* Slide-out Chat History Drawer */}
+      <HistoryDrawer
+        isOpen={isHistoryOpen}
+        onClose={() => setIsHistoryOpen(false)}
+        messages={messages}
+        onClearHistory={handleClearChat}
+      />
     </div>
   )
 }
