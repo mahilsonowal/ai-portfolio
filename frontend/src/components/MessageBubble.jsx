@@ -21,7 +21,8 @@ export default function MessageBubble({ message, isCurrentlyStreaming = false })
 
   return (
     <div
-      className={`group flex items-start gap-2.5 sm:gap-3 w-full max-w-3xl mx-auto py-2 transition-opacity ${
+      id={message.id || `msg-${message.role}`}
+      className={`group flex items-start gap-2.5 sm:gap-3 w-full max-w-3xl mx-auto py-2 transition-all scroll-mt-20 ${
         isUser ? 'flex-row-reverse justify-start' : 'justify-start'
       }`}
     >

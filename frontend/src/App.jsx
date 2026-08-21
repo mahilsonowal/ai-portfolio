@@ -159,6 +159,22 @@ export default function App() {
     }
   }
 
+  const handleSelectHistoryMessage = (messageId) => {
+    setActiveTab('chat')
+    setIsHistoryOpen(false)
+
+    setTimeout(() => {
+      const el = document.getElementById(messageId)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        el.classList.add('ring-2', 'ring-indigo-400', 'bg-indigo-950/40', 'rounded-2xl', 'p-2')
+        setTimeout(() => {
+          el.classList.remove('ring-2', 'ring-indigo-400', 'bg-indigo-950/40', 'p-2')
+        }, 2200)
+      }
+    }, 120)
+  }
+
   const handleClearChat = () => {
     if (window.confirm('Reset conversation history?')) {
       setMessages([])
@@ -216,6 +232,7 @@ export default function App() {
         onClose={() => setIsHistoryOpen(false)}
         messages={messages}
         onClearHistory={handleClearChat}
+        onSelectMessage={handleSelectHistoryMessage}
       />
     </div>
   )

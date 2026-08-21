@@ -10,6 +10,7 @@ import {
   MessageSquare,
   Sparkles,
   ArrowRight,
+  CornerDownRight,
 } from 'lucide-react'
 
 export default function HistoryDrawer({
@@ -76,6 +77,13 @@ export default function HistoryDrawer({
     }
   }
 
+  const handleCardClick = (messageId) => {
+    if (onSelectMessage) {
+      onSelectMessage(messageId)
+    }
+    onClose()
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex justify-end animate-fade-in">
       {/* Dimmed Backdrop */}
@@ -100,7 +108,7 @@ export default function HistoryDrawer({
                 </span>
               </h3>
               <p className="text-xs text-slate-400">
-                Review questions and export chat logs
+                Click any question to jump directly to it in chat
               </p>
             </div>
           </div>
@@ -173,7 +181,7 @@ export default function HistoryDrawer({
           </div>
         </div>
 
-        {/* Message Feed / Questions List */}
+        {/* Message Feed / Questions List (Interactive & Clickable) */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {messages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center p-6 text-slate-500 space-y-3">
@@ -188,52 +196,58 @@ export default function HistoryDrawer({
               </p>
             </div>
           ) : searchTerm ? (
-            /* Search Results */
+            /* Search Results (Clickable) */
             <div className="space-y-2">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-2">
                 Matching Search Results ({filteredMessages.length})
               </span>
               {filteredMessages.map((msg, i) => (
-                <div
-                  key={i}
-                  className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1"
+                <button
+                  key={msg.id || i}
+                  onClick={() => handleCardClick(msg.id || `msg-${msg.role}`)}
+                  className="w-full text-left p-3 rounded-xl bg-slate-900/90 hover:bg-indigo-950/40 border border-slate-800 hover:border-indigo-500/40 space-y-1 transition-all group cursor-pointer"
                 >
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-indigo-400">
-                    {msg.role === 'user' ? '👤 Question' : '🤖 AI Answer'}
+                  <div className="flex items-center justify-between text-[11px] font-semibold text-indigo-400">
+                    <span>{msg.role === 'user' ? '👤 Question' : '🤖 AI Answer'}</span>
+                    <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-0.5" />
                   </div>
-                  <p className="text-xs text-slate-300 line-clamp-3">
+                  <p className="text-xs text-slate-300 line-clamp-3 group-hover:text-white">
                     {msg.content}
                   </p>
-                </div>
+                </button>
               ))}
             </div>
           ) : (
-            /* Questions Timeline */
+            /* Questions Timeline (Clickable) */
             <div className="space-y-2.5">
               <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block mb-2">
-                Topic History ({userQuestions.length} queries)
+                Topic History ({userQuestions.length} queries — click to jump)
               </span>
               {userQuestions.map((q, idx) => (
-                <div
-                  key={idx}
-                  className="group p-3.5 rounded-xl bg-slate-900/70 hover:bg-slate-900 border border-slate-800/80 hover:border-indigo-500/40 transition-all space-y-2"
+                <button
+                  key={q.id || idx}
+                  onClick={() => handleCardClick(q.id || `msg-user`)}
+                  className="w-full text-left group p-3.5 rounded-xl bg-slate-900/70 hover:bg-indigo-950/40 border border-slate-800/80 hover:border-indigo-500/40 transition-all space-y-2 cursor-pointer shadow-sm"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-xs font-medium text-slate-200 line-clamp-2">
+                    <p className="text-xs font-semibold text-slate-200 group-hover:text-indigo-300 transition-colors line-clamp-2">
                       {q.content}
                     </p>
-                    <span className="flex-shrink-0 text-[10px] text-slate-500 px-1.5 py-0.5 rounded bg-slate-800 font-mono">
+                    <span className="flex-shrink-0 text-[10px] text-slate-500 group-hover:text-indigo-300 px-1.5 py-0.5 rounded bg-slate-800 font-mono">
                       #{userQuestions.length - idx}
                     </span>
                   </div>
 
                   {/* AI Preview Snippet */}
                   {messages[q.originalIndex + 1] && (
-                    <p className="text-[11px] text-slate-400 line-clamp-2 pl-2 border-l-2 border-indigo-500/40">
-                      {messages[q.originalIndex + 1].content}
-                    </p>
+                    <div className="flex items-center justify-between gap-2 text-[11px] text-slate-400 line-clamp-2 pl-2 border-l-2 border-indigo-500/40 group-hover:border-indigo-400">
+                      <span className="line-clamp-2">
+                        {messages[q.originalIndex + 1].content}
+                      </span>
+                      <CornerDownRight className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
                   )}
-                </div>
+                </button>
               ))}
             </div>
           )}
