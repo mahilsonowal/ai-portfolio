@@ -26,22 +26,12 @@ export default function App() {
 
   const [isStreaming, setIsStreaming] = useState(false)
   const [isInitializing, setIsInitializing] = useState(true)
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark'
-  })
 
-  // Theme synchronization with HTML root element
+  // Ensure dark mode is active
   useEffect(() => {
-    const root = document.documentElement
-    if (theme === 'dark') {
-      root.classList.add('dark')
-      root.classList.remove('light')
-    } else {
-      root.classList.add('light')
-      root.classList.remove('dark')
-    }
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    document.documentElement.classList.add('dark')
+    document.documentElement.classList.remove('light')
+  }, [])
 
   // Persist master history to localStorage
   useEffect(() => {
@@ -51,10 +41,6 @@ export default function App() {
       console.warn('Failed to persist all history to localStorage:', e)
     }
   }, [allHistory])
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
-  }
 
   // App initialization check
   useEffect(() => {
@@ -210,8 +196,6 @@ export default function App() {
         onTriggerPitch={handleTriggerPitch}
         onOpenHistory={() => setIsHistoryOpen(true)}
         messageCount={allHistory.filter((m) => m.role === 'user').length}
-        theme={theme}
-        onToggleTheme={toggleTheme}
       />
 
       {/* Main Content View Switcher */}
