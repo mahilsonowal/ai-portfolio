@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
+import PortfolioHome from './components/PortfolioHome'
 import ChatWindow from './components/ChatWindow'
 import ChatInput from './components/ChatInput'
 import JobMatcher from './components/JobMatcher'
@@ -8,10 +9,10 @@ import HistoryDrawer from './components/HistoryDrawer'
 import { sendMessage, getPitchStream, getCandidateProfile } from './api/chat'
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('chat') // 'chat' | 'matcher'
+  const [activeTab, setActiveTab] = useState('home') // 'home' | 'chat' | 'matcher'
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
 
-  // Current active chat session messages (empty by default for clean new chat)
+  // Current active chat session messages
   const [messages, setMessages] = useState([])
 
   // Master history log across all sessions stored in localStorage
@@ -137,10 +138,9 @@ export default function App() {
     }
   }
 
-  // Brand click: Start a fresh new chat session without showing past chat
+  // Brand click: Navigate to Home Portfolio
   const handleNewChat = () => {
-    setActiveTab('chat')
-    setMessages([])
+    setActiveTab('home')
   }
 
   // When a user selects a past item from the History Drawer:
@@ -194,7 +194,13 @@ export default function App() {
 
       {/* Main Content View Switcher */}
       <main className="flex-1 flex flex-col min-h-0 relative bg-[#ffffff]">
-        {activeTab === 'chat' ? (
+        {activeTab === 'home' ? (
+          <PortfolioHome
+            onNavigateTab={setActiveTab}
+            onAskInChat={handleSendMessage}
+            onTriggerPitch={handleTriggerPitch}
+          />
+        ) : activeTab === 'chat' ? (
           <>
             <ChatWindow
               messages={messages}

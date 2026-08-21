@@ -104,14 +104,10 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
 
   return (
     <div className="flex-1 w-full overflow-y-auto px-4 sm:px-8 py-8 max-w-[1000px] mx-auto space-y-8 animate-fade-in scroll-smooth bg-[#ffffff]">
-      
+
       {/* Header Banner (DESIGN.md Cloud #f6f6f6 card) */}
       <div className="bg-[#f6f6f6] border border-[#e7e7e7] rounded-[32px] p-6 sm:p-8 space-y-4">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.075em] bg-white text-[#594ff4] border border-[#e7e7e7]">
-            <Briefcase className="w-3.5 h-3.5" />
-            RECRUITER & HIRING TOOL
-          </div>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1f1f1f]">
             Job Description Fit Evaluator
           </h2>
@@ -219,7 +215,7 @@ ${result.key_strengths.map((s) => `• ${s}`).join('\n')}
           {/* Top Score & Recommendation Card */}
           <div className="bg-[#f6f6f6] border border-[#e7e7e7] rounded-[32px] p-6 sm:p-8 space-y-6">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-[#e7e7e7]">
-              
+
               {/* Score Metric Display */}
               <div className="flex items-center gap-5">
                 <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white border border-[#e7e7e7] shadow-sm">

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Mail,
   Trash2,
+  Home,
   MessageSquare,
   Target,
   Zap,
@@ -39,7 +40,7 @@ const LinkedinIcon = ({ className = 'w-4 h-4' }) => (
 )
 
 export default function Header({
-  activeTab = 'chat',
+  activeTab = 'home',
   onTabChange,
   onNewChat,
   onClearChat,
@@ -50,11 +51,7 @@ export default function Header({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleBrandClick = () => {
-    if (onNewChat) {
-      onNewChat()
-    } else {
-      onTabChange('chat')
-    }
+    onTabChange('home')
     setIsMobileMenuOpen(false)
   }
 
@@ -82,13 +79,13 @@ export default function Header({
     <header className="sticky top-0 z-30 w-full bg-[#ffffff]/90 backdrop-blur-md border-b border-[#e7e7e7] px-4 sm:px-8 py-3 transition-colors">
       <div className="max-w-[1200px] mx-auto flex items-center justify-between gap-4">
 
-        {/* BRAND: Avatar + Typography (Clickable: Starts New Chat Session) */}
+        {/* BRAND: Avatar + Title (Clickable to Home) */}
         <button
           type="button"
           onClick={handleBrandClick}
           className="flex items-center gap-3 min-w-0 text-left group cursor-pointer focus:outline-none rounded-2xl p-1 -ml-1 transition-all"
-          title="New Chat / Start Fresh Session"
-          aria-label="New Chat / Start Fresh Session"
+          title="Return to Home Portfolio"
+          aria-label="Return to Home Portfolio"
         >
           <div className="relative flex-shrink-0">
             <div className="w-10 h-10 rounded-[10px] bg-[#f6f6f6] border border-[#e7e7e7] p-[2px] overflow-hidden">
@@ -117,17 +114,30 @@ export default function Header({
           </div>
         </button>
 
-        {/* DESKTOP VIEW: Navigation Pill Tabs + Actions (DESIGN.md specs) */}
+        {/* DESKTOP VIEW: Navigation Segment Pill Tabs + Actions */}
         <div className="hidden md:flex items-center gap-3">
-
-          {/* Main Navigation Segment Pill Tabs */}
+          
+          {/* Main 3-Tab Segment Pills */}
           <div className="flex items-center bg-[#f6f6f6] border border-[#e7e7e7] p-1 rounded-full">
             <button
-              onClick={() => handleTabSwitch('chat')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${activeTab === 'chat'
+              onClick={() => handleTabSwitch('home')}
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+                activeTab === 'home'
                   ? 'bg-[#594ff4] text-white shadow-sm font-semibold'
                   : 'text-[#5d5d5d] hover:text-[#1f1f1f]'
-                }`}
+              }`}
+            >
+              <Home className="w-3.5 h-3.5" />
+              <span>Portfolio</span>
+            </button>
+
+            <button
+              onClick={() => handleTabSwitch('chat')}
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+                activeTab === 'chat'
+                  ? 'bg-[#594ff4] text-white shadow-sm font-semibold'
+                  : 'text-[#5d5d5d] hover:text-[#1f1f1f]'
+              }`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>AI Chat</span>
@@ -135,17 +145,14 @@ export default function Header({
 
             <button
               onClick={() => handleTabSwitch('matcher')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${activeTab === 'matcher'
+              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-tight transition-all cursor-pointer ${
+                activeTab === 'matcher'
                   ? 'bg-[#594ff4] text-white shadow-sm font-semibold'
                   : 'text-[#5d5d5d] hover:text-[#1f1f1f]'
-                }`}
+              }`}
             >
               <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>
-              <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase tracking-wider ${activeTab === 'matcher' ? 'bg-white/20 text-white' : 'bg-[#e7e7e7] text-[#5d5d5d]'
-                }`}>
-                Recruiter
-              </span>
             </button>
           </div>
 
@@ -252,30 +259,44 @@ export default function Header({
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN MENU FLYOUT (Cloud #f6f6f6 card) */}
+      {/* MOBILE DROPDOWN MENU FLYOUT */}
       {isMobileMenuOpen && (
         <div className="md:hidden mt-3 p-4 bg-[#f6f6f6] border border-[#e7e7e7] rounded-[24px] space-y-3 shadow-lg">
-          {/* 1. Main Navigation Tabs */}
-          <div className="grid grid-cols-2 gap-2 p-1 bg-white rounded-full border border-[#e7e7e7]">
+          {/* 1. Main Navigation 3 Tabs */}
+          <div className="grid grid-cols-3 gap-1.5 p-1 bg-white rounded-full border border-[#e7e7e7]">
             <button
-              onClick={() => handleTabSwitch('chat')}
-              className={`flex items-center justify-center gap-2 py-2 rounded-full text-xs font-semibold transition-all ${activeTab === 'chat'
+              onClick={() => handleTabSwitch('home')}
+              className={`flex items-center justify-center gap-1 py-2 rounded-full text-xs font-semibold transition-all ${
+                activeTab === 'home'
                   ? 'bg-[#594ff4] text-white shadow-sm'
                   : 'text-[#5d5d5d]'
-                }`}
+              }`}
             >
-              <MessageSquare className="w-4 h-4" />
+              <Home className="w-3.5 h-3.5" />
+              <span>Home</span>
+            </button>
+
+            <button
+              onClick={() => handleTabSwitch('chat')}
+              className={`flex items-center justify-center gap-1 py-2 rounded-full text-xs font-semibold transition-all ${
+                activeTab === 'chat'
+                  ? 'bg-[#594ff4] text-white shadow-sm'
+                  : 'text-[#5d5d5d]'
+              }`}
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
               <span>AI Chat</span>
             </button>
 
             <button
               onClick={() => handleTabSwitch('matcher')}
-              className={`flex items-center justify-center gap-2 py-2 rounded-full text-xs font-semibold transition-all ${activeTab === 'matcher'
+              className={`flex items-center justify-center gap-1 py-2 rounded-full text-xs font-semibold transition-all ${
+                activeTab === 'matcher'
                   ? 'bg-[#594ff4] text-white shadow-sm'
                   : 'text-[#5d5d5d]'
-                }`}
+              }`}
             >
-              <Target className="w-4 h-4" />
+              <Target className="w-3.5 h-3.5" />
               <span>Match JD</span>
             </button>
           </div>
