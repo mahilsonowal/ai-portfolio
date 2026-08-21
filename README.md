@@ -27,6 +27,7 @@ An interactive, full-stack AI representative representing **Mahil Sonowal** (Fro
 - 🧠 **Multi-Turn Conversational Memory**: Sliding-window context management (retaining the last 20 messages) enables natural contextual follow-ups without exceeding token limits.
 - 🎯 **Recruiter Job Description Matcher**: A dedicated recruiter dashboard where hiring managers can paste any job posting to receive an objective **Fit Score (0–100%)**, matching strengths, skill gaps, and interview recommendations.
 - ⚡ **"Why Hire Mahil?" 60-Second Recruiter Pitch (Bonus Feature)**: A dedicated one-click elevator pitch generator that produces an authentic, persuasive hiring case based on Mahil's verified projects, academics, and RAG research.
+- 📜 **Interactive Chat History Drawer**: A slide-out sidebar to browse past queries, search topics, copy entire transcripts, and export `.md` conversation logs.
 - 🎨 **Modern ChatGPT-Inspired Dark UI**: Polished glassmorphism design with responsive layouts, interactive starter prompt cards, one-click copy buttons, and rich Markdown rendering (tables, badges, and clickable links).
 
 ---
