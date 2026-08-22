@@ -4,7 +4,6 @@ import PortfolioHome from './components/PortfolioHome'
 import ChatWindow from './components/ChatWindow'
 import ChatInput from './components/ChatInput'
 import JobMatcher from './components/JobMatcher'
-import LoadingSkeleton from './components/LoadingSkeleton'
 import HistoryDrawer from './components/HistoryDrawer'
 import { sendMessage, getPitchStream, getCandidateProfile } from './api/chat'
 
@@ -26,7 +25,6 @@ export default function App() {
   })
 
   const [isStreaming, setIsStreaming] = useState(false)
-  const [isInitializing, setIsInitializing] = useState(true)
 
   // Persist master history to localStorage
   useEffect(() => {
@@ -37,18 +35,11 @@ export default function App() {
     }
   }, [allHistory])
 
-  // App initialization check
+  // Non-blocking backend warm-up in the background (fire-and-forget)
   useEffect(() => {
-    const initApp = async () => {
-      try {
-        await getCandidateProfile()
-      } catch (err) {
-        console.warn('Backend warm-up / initialization notice:', err.message)
-      } finally {
-        setTimeout(() => setIsInitializing(false), 400)
-      }
-    }
-    initApp()
+    getCandidateProfile().catch((err) => {
+      console.warn('Background backend warm-up notice:', err.message)
+    })
   }, [])
 
   const handleSendMessage = async (text) => {
@@ -173,10 +164,6 @@ export default function App() {
         console.warn('Failed to clear history:', e)
       }
     }
-  }
-
-  if (isInitializing) {
-    return <LoadingSkeleton />
   }
 
   return (
